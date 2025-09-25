@@ -22,9 +22,6 @@ Simular jornadas completas de la liga.
 
 Reiniciar la liga para comenzar una nueva temporada.
 
-La información puede guardarse en un archivo de texto llamado Liga.txt, el cual se actualiza solo cuando el usuario selecciona la opción de guardado en el menú. Esto brinda control sobre el momento en que se almacenan los datos y permite conservar el registro de las estadísticas para futuras consultas.
-
-Este proyecto combina la programación estructurada en C++ con el uso de funciones básicas y algoritmos de ordenamiento, ofreciendo una herramienta entretenida y didáctica para comprender cómo se gestiona una liga de fútbol y cómo se aplican conceptos fundamentales de programación.
 
 Descripción del avance 1
 
