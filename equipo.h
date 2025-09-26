@@ -1,8 +1,15 @@
+// Diego Antonio González Cortés | A01713489
+// TC1031 Programación de estructuras de datos y algoritmos fundamentales
+
+#ifndef EQUIPO_H
+#define EQUIPO_H
+
 using namespace std;
 #include <iostream>
 #include <string>
-#ifndef EQUIPO_H
-#define EQUIPO_H
+#include <iomanip>
+#include <vector>
+
 
 
 class Equipo
@@ -36,13 +43,25 @@ public:
         return golcont;
     }
 
-    int getDifGoles(){
+    int getDifGoles() const{
         return goles-golcont;
     }
 
     void regPartido(int gf, int gc){
         goles += gf;
         golcont += gc;
+
+        if (gf > gc) puntos += 3;  
+        else if (gf == gc) puntos += 1;
+    }
+
+    // Mostrar datos
+    void mostrarEquipo() const {
+        cout << left << setw(15) << nombre
+             << setw(10) << puntos
+             << setw(10) << goles
+             << setw(10) << golcont
+             << setw(10) << getDifGoles() << endl;
     }
 
 
