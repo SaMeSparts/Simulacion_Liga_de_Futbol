@@ -78,7 +78,7 @@ Implementa mecanismos para consultar información de las estructuras de manera c
 - Se puede reiniciar la liga y simular nuevamente.
 
 Implementa mecanismos de lectura de archivos para cargar datos a las estructuras:  
-- En futuras versiones, los equipos pueden cargarse desde un archivo `equipos.csv`.  
+- Los equipos se cargan desde un archivo `equipos.csv`.  
 - Los resultados de jornadas y la tabla general pueden guardarse en CSV para análisis posterior.  
 
 Implementa mecanismos de escritura de archivos para guardar datos de manera correcta:  
