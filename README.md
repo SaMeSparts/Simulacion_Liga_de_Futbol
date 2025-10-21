@@ -1,160 +1,72 @@
 # Simulación de Liga de Fútbol
 
-Este proyecto simula una liga de fútbol con 18 equipos (modelo Liga MX) en una sola vuelta de 17 jornadas.  
-El sistema genera partidos y marcadores de manera aleatoria, actualiza las estadísticas de los equipos y permite al usuario decidir qué visualizar: simular la liga completa, ver la tabla general, revisar los resultados de cualquier jornada ya simulada o reiniciar la liga.
+Este proyecto consiste en la simulación de una liga de fútbol con 18 equipos, similar a la Liga MX, en una vuelta completa de 17 jornadas.  
+El programa genera partidos y resultados aleatorios, actualiza las estadísticas de cada equipo y permite al usuario decidir qué visualizar: la tabla general, resultados de una jornada específica o reiniciar la liga para comenzar una nueva temporada.
 
 ---
 
-## Flujo de uso / Ejemplo de funcionamiento
+## Funcionamiento del programa
 
 1. El usuario inicia el programa.  
-2. El usuario elige si quiere simular la liga completa.  
-   - Si elige simular, el programa genera aleatoriamente los resultados de las 17 jornadas (cada jornada contiene 9 partidos, dado que hay 18 equipos).  
-3. Tras simular todas las jornadas, el usuario puede:
-   - Seleccionar una jornada específica (1..17) para ver sus partidos y resultados.
-   - Volver al menú principal y elegir ver la **tabla general** (posición acumulada después de todas las jornadas).
-   - **Reiniciar la liga** (borrar todas las jornadas y estadísticas acumuladas).
-4. Todas las simulaciones producen resultados aleatorios.  
-5. La tabla general se ordena usando un algoritmo de ordenamiento (recomendado: `std::sort` / QuickSort o Introsort; ver sección “Estructuras y algoritmos” para detalles).
+2. Decide si quiere simular la liga completa.  
+3. Una vez simuladas todas las jornadas, puede:
+   - Consultar los resultados de cualquier jornada (1–17).  
+   - Ver la tabla general de posiciones ordenada por puntos, diferencia de goles y goles a favor.  
+   - Reiniciar la liga para volver a simular una nueva temporada.  
+4. Todos los resultados de los partidos son generados de manera aleatoria.  
+5. La tabla general se ordena utilizando un algoritmo de ordenamiento eficiente, como QuickSort o `std::sort` de C++.
 
 ---
 
-## Descripción del avance (nueva funcionalidad)
+## Descripción de funcionalidades
 
-En esta versión se ha implementado:
-
-- Ajuste para **18 equipos** (estructura y validaciones).  
-- Simulación de una **vuelta completa** (17 jornadas).  
-- **Generación aleatoria** de marcadores por partido.  
-- Almacenamiento de las 17 jornadas para poder revisarlas posteriormente.  
-- **Menú interactivo** donde el usuario puede:
-  - Simular la liga completa.
-  - Seleccionar y ver cualquier jornada (1–17).
-  - Ver la tabla de posiciones general.
-  - **Reiniciar la liga** (borrar jornadas y estadísticas).
-- Ordenamiento de la tabla por puntos y criterios de desempate.
+- Registro de 18 equipos con estadísticas: puntos, goles a favor, goles en contra y diferencia de goles.  
+- Simulación automática de 17 jornadas completas.  
+- Visualización de la tabla de posiciones general y resultados de cada jornada.  
+- Menú interactivo que permite simular, consultar jornadas, ver la tabla general y reiniciar la liga.  
+- Ordenamiento de la tabla según criterios: puntos, diferencia de goles, goles a favor y nombre del equipo.
 
 ---
 
 ## Estructuras y algoritmos utilizados
 
-### Representación principal de datos
+- `vector<Equipo>` para almacenar los 18 equipos.  
+- `struct Jornada` con un `vector<Partido>` para almacenar los partidos de cada jornada.  
+- Ordenamiento de la tabla usando `std::sort` o QuickSort, según conveniencia.  
+- Opcional: `unordered_map<string,int>` para acceso rápido por nombre de equipo.  
 
-- `struct Equipo`  
-  - `string nombre`  
-  - `int puntos`  
-  - `int golesAFavor`  
-  - `int golesEnContra`  
-  - `int diferencia`  
-- `struct Partido`  
-  - `int idLocal`, `int idVisitante` (índices en el vector de equipos)  
-  - `int golesLocal`, `int golesVisitante`  
-- `using Jornada = vector<Partido>`  
-- `vector<Equipo> equipos`  — lista de 18 equipos.  
-- `vector<Jornada> calendario` — tamaño 17; cada `Jornada` contiene 9 partidos.
+**Análisis de complejidad:**
 
-Esta organización (vectores de objetos) facilita indexado, recorrido y serialización a CSV si se requiere.
-
-### Algoritmo de ordenamiento recomendado
-
-**Opción 1 — Usar `std::sort` (recomendado):**  
-- `std::sort` implementa *Introsort* (quicksort + heapsort + insertion sort), que ofrece:
-  - Complejidad promedio: `O(n log n)`
-  - Peor caso garantizado: `O(n log n)`
-  - Implementación robusta y optimizada en la STL
-- Recomendación: usar `std::sort(equipos.begin(), equipos.end(), cmp)` donde `cmp` compara:
-  1. Puntos (descendente)
-  2. Diferencia de goles (descendente)
-  3. Goles a favor (descendente)
-  4. (Opcional) Nombre (alfabético) para estabilidad determinística
-
-**Opción 2 — Implementar QuickSort propio:**  
-- Complejidad promedio: `O(n log n)`  
-- Peor caso: `O(n²)` (evitable si se usa pivote aleatorio o particionado aleatorio)  
-- Si se implementa, recomiendo usar *randomized pivot* o mezclar con heapsort para evitar degeneración.
-
-**Elección recomendada:** `std::sort` (Introsort) — es la opción más segura, con mejor rendimiento promedio y sin riesgo práctico de peor caso, además de ser fácil de usar.
+- Simulación de una jornada (9 partidos): O(N)  
+- Simulación de todas las jornadas (17): O(N * J) ≈ O(N) para N = 18  
+- Ordenamiento de tabla: O(N log N) usando `std::sort`  
+- Búsqueda de equipo por nombre: O(N) lineal o O(1) usando `unordered_map`
 
 ---
 
-## Almacenamiento de jornadas y operaciones típicas
+## Avance 1 - SICT
 
-- Simular liga completa:
-  - Generar las 17 jornadas completas y guardarlas en `calendario`.
-  - Actualizar las estadísticas en `equipos` tras cada partido.
-- Ver jornada `k`:
-  - Mostrar la lista de 9 partidos con sus resultados en `calendario[k-1]`.
-- Ver tabla general:
-  - Ordenar copia de `equipos` con `std::sort` usando `cmp`.
-  - Mostrar posición, puntos, GF, GC, diferencia.
-- **Reiniciar liga:**
-  - Vaciar `calendario` y reiniciar estadísticas de `equipos` a 0.
-  - Permite volver a simular una nueva temporada desde cero.
+**SICT0301: Evalúa los componentes**  
+- Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
+
+**SICT0302: Toma decisiones**  
+- Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 
 ---
 
-## Casos de prueba y validación
+## Avance 2 - SICT
 
-- `pruebas.cpp` debe incluir pruebas para:
-  - Generación de calendario (17 jornadas con 9 partidos cada una, sin repetir emparejamientos por jornada de forma inválida).  
-  - Simulación de partidos y acumulación correcta de estadísticas (puntos y goles).  
-  - Ordenamiento correcto de la tabla según criterios.  
-  - Visualización de jornadas y reinicio de liga.
+**SICT0301: Evalúa los componentes**  
+- Hace un análisis de complejidad correcto y completo de todas las estructuras de datos y cada uno de sus usos en el programa.
 
----
+**SICT0302: Toma decisiones**  
+- Selecciona una estructura de datos adecuada al problema y la usa correctamente.
 
-## Análisis de complejidad
-
-**N = número de equipos (aquí N = 18)**
-
-- Generar una jornada (9 partidos) y actualizar estadísticas por jornada: `O(N)` (recorrer cada partido y actualizar dos equipos).  
-- Simular todas las 17 jornadas: `O(N * J)` con `J = 17` → `O(N)` en práctica (constante por diseño de la liga).  
-- Ordenamiento de la tabla: `O(N log N)` si se usa `std::sort` (recomendado).  
-- Búsqueda de un equipo por nombre (si se implementa lineal): `O(N)`; se puede acelerar con `unordered_map<string, int>` para `O(1)` promedio.
+**SICT0303: Implementa acciones científicas**  
+- Implementa mecanismos para consultar información de las estructuras de manera correcta.  
+- Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
 
 ---
 
-## SICT0302B: Toma decisiones
-
-### Selección y uso de estructura lineal adecuada
-Se utiliza un `vector<Equipo>` para almacenar los 18 equipos por facilidad de indexado, iteración y compatibilidad con algoritmos STL (`std::sort`). Para acceso rápido por nombre, se puede mantener además un `unordered_map<string, int>` que mapea nombre → índice en el vector.
-
-### Selección de algoritmo de ordenamiento adecuado
-Se recomienda `std::sort` (Introsort) por su rendimiento y robustez (`O(n log n)` promedio y peor caso). Si se desea implementar QuickSort propio, hacerlo con pivote aleatorio para mitigar el peor caso.
-
-### Uso de árbol o estructura adicional (opcional)
-No es necesario un BST para el problema base con 18 equipos. Sin embargo, si se quisiera soportar consultas por rangos de puntos o búsquedas frecuentes por métricas, se podría usar un árbol balanceado (AVL/Red-Black) o un multimap. Para el alcance actual, `vector` + `unordered_map` + `std::sort` es suficiente.
-
----
-
-## SICT0301B: Evalúa los componentes
-
-### Casos de prueba
-- Pruebas en `pruebas.cpp` para:
-  - Correcta simulación y acumulación de puntos/goles.
-  - Ordenamiento por puntos/diferencia/goles a favor.
-  - Visualización de jornadas y reinicio de liga.
-
-### Análisis de complejidad (resumen)
-- Acceso por índice al vector: `O(1)`  
-- Búsqueda por nombre (lineal): `O(n)` (mejor con `unordered_map` → `O(1)` promedio)  
-- Ordenamiento con `std::sort`: `O(n log n)`.
-
----
-
-## SICT0303B: Implementa acciones científicas
-
-### Mecanismos de consulta
-- Buscar equipo por nombre (opción de menú).  
-- Mostrar reporte de la tabla ordenada.  
-- Mostrar resultados completos de cualquier jornada simulada.  
-- **Reiniciar la liga** y volver a simular.
-
-### Lectura y escritura de archivos
-- Lectura: en futuras versiones el programa podrá cargar equipos/estadísticas desde `equipos.csv`.  
-- Escritura: guardar calendario y tabla final en CSV para análisis posterior.
-
----
-
-
+## Estructura del proyecto
 
