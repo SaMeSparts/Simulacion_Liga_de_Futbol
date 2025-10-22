@@ -1,39 +1,88 @@
-# Simulación de Liga de Futbol
+# Simulación de Liga de Fútbol
 
-Este proyecto consiste en la simulación de una liga de fútbol, donde varios equipos compiten entre sí en partidos generados de manera aleatoria. El sistema permite gestionar la tabla de posiciones de forma dinámica, actualizando los resultados de los equipos y mostrando el ranking de acuerdo con su desempeño durante la temporada.
+Este proyecto consiste en la simulación de una liga de fútbol con 18 equipos, similar a la Liga MX, en una vuelta completa de 17 jornadas.  
+El programa genera partidos y resultados aleatorios, actualiza las estadísticas de cada equipo y permite al usuario decidir qué visualizar: la tabla general, resultados de una jornada específica o reiniciar la liga para comenzar una nueva temporada.
 
-La simulación incluye la generación automática de partidos entre los equipos participantes. Cada partido asigna aleatoriamente un marcador, el cual influye en el puntaje de cada equipo (victoria, empate o derrota). Con base en estos resultados, el sistema calcula y actualiza la tabla de posiciones.
+---
 
-Para garantizar que la tabla esté siempre organizada y clara, se utilizan algoritmos de ordenamiento básicos en C++, como Bubble Sort o Selection Sort, que permiten ordenar a los equipos de acuerdo con criterios como:
+## Funcionamiento del programa
 
-Puntos obtenidos.
+1. El usuario inicia el programa.  
+2. Decide si quiere simular la liga completa.  
+3. Una vez simuladas todas las jornadas, puede:
+   - Consultar los resultados de cualquier jornada (1–17).  
+   - Ver la tabla general de posiciones ordenada por puntos, diferencia de goles y goles a favor.  
+   - Reiniciar la liga para volver a simular una nueva temporada.  
+4. Todos los resultados de los partidos son generados de manera aleatoria.  
+5. La tabla general se ordena utilizando un algoritmo de ordenamiento eficiente, como QuickSort o `std::sort` de C++.
 
-Diferencia de goles.
+---
 
-Goles a favor.
+## Descripción de funcionalidades
 
-De esta manera, la tabla de posiciones refleja en todo momento el desempeño real de los equipos dentro de la simulación.
+- Registro de 18 equipos con estadísticas: puntos, goles a favor, goles en contra y diferencia de goles.  
+- Simulación automática de 17 jornadas completas.  
+- Visualización de la tabla de posiciones general y resultados de cada jornada.  
+- Menú interactivo que permite simular, consultar jornadas, ver la tabla general y reiniciar la liga.  
+- Ordenamiento de la tabla según criterios: puntos, diferencia de goles, goles a favor y nombre del equipo.
 
-Además, el sistema incorpora funciones adicionales para:
+---
 
-Mostrar los equipos y sus estadísticas.
+## SICT0302B: Toma decisiones
 
-Simular jornadas completas de la liga.
+### Selecciona y usa una estructura lineal adecuada al problema
+Se utiliza un `vector<Equipo>` para almacenar los 18 equipos porque permite acceder rápidamente a cada equipo mediante índices y facilita recorrerlos para actualizar estadísticas tras cada partido.  
+Cada equipo es un objeto que contiene nombre, puntos, goles a favor, goles en contra y diferencia de goles.  
+Los elementos se pueden actualizar y reiniciar usando funciones del programa como simular jornada, actualizar estadísticas y reiniciar liga.
 
-Reiniciar la liga para comenzar una nueva temporada.
+### Selecciona un algoritmo de ordenamiento adecuado al problema
+Para organizar la tabla de posiciones se utiliza `std::sort` de C++, que implementa Introsort (mezcla de QuickSort y HeapSort). Esto permite ordenar los equipos por puntos, diferencia de goles y goles a favor de manera eficiente.  
+Las funciones donde se usa el ordenamiento se encuentran en `liga.cpp` en las funciones que generan la tabla general.
 
+### Uso de árbol o estructura adicional (opcional)
+No se requiere un BST para este proyecto, pero si se deseara buscar equipos por rangos de puntos o por estadísticas rápidamente, se podría implementar un `unordered_map` o un árbol balanceado.
 
-Descripción del avance 1
+---
 
-En este primer avance, se ha implementado lo siguiente:
+## SICT0301B: Evalúa los componentes
 
-Clase Equipo para gestionar la información de cada equipo (nombre, puntos, goles a favor, goles en contra, diferencia de goles).
+Presenta casos de prueba correctos y completos para todas las funciones y procedimientos del programa:  
+- Casos de prueba para simular todas las jornadas.  
+- Casos de prueba para actualizar correctamente estadísticas de equipos.  
+- Casos de prueba para ordenar la tabla de posiciones.  
+- Casos de prueba para reiniciar la liga.  
 
-Clase Liga para manejar el conjunto de equipos y la simulación de partidos.
+Hace un análisis de complejidad correcto y completo de los componentes del programa:
 
-Funcionalidad para generar partidos aleatorios y actualizar estadísticas de los equipos.
+**Lista de equipos (vector)**  
+- Acceso por índice: O(1)  
+- Actualización de estadísticas: O(1) por equipo  
+- Reinicio de estadísticas: O(N), N = 18
 
-Funcionalidad para mostrar la tabla de posiciones en pantalla.
+**Ordenamiento de tabla (std::sort / Introsort)**  
+- Complejidad promedio: O(N log N)  
+- Peor caso: O(N log N) garantizado por Introsort
 
-Implementación de algoritmos de ordenamiento (por puntos y diferencia de goles) para organizar la tabla de posiciones.
+**Simulación de jornadas**  
+- Generación de una jornada (9 partidos): O(N)  
+- Generación de todas las jornadas (17): O(N * 17) ≈ O(N) para N = 18
+
+---
+
+## SICT0303B: Implementa acciones científicas
+
+Implementa mecanismos para consultar información de las estructuras de manera correcta y útil dentro del programa:  
+- El usuario puede buscar información de cada equipo por índice o nombre.  
+- Se puede visualizar la tabla general ordenada.  
+- Se puede consultar los resultados de cualquier jornada simulada.  
+- Se puede reiniciar la liga y simular nuevamente.
+
+Implementa mecanismos de lectura de archivos para cargar datos a las estructuras:  
+- Los equipos se cargan desde un archivo `equipos.csv`.  
+- Los resultados de jornadas y la tabla general pueden guardarse en CSV para análisis posterior.  
+
+Implementa mecanismos de escritura de archivos para guardar datos de manera correcta:  
+- Las jornadas simuladas y la tabla de posiciones se podrían guardar al final de un archivo CSV, de modo que no sea necesario recapturar la información cada vez que se corre el programa.
+
+---
 
