@@ -79,10 +79,10 @@ Implementa mecanismos para consultar información de las estructuras de manera c
 
 Implementa mecanismos de lectura de archivos para cargar datos a las estructuras:  
 - Los equipos se cargan desde un archivo `equipos.csv`.  
-- Los resultados de jornadas y la tabla general pueden guardarse en CSV para análisis posterior.  
+- Los resultados de jornadas y la tabla general se guardan en CSV.  
 
 Implementa mecanismos de escritura de archivos para guardar datos de manera correcta:  
-- Las jornadas simuladas y la tabla de posiciones se podrían guardar al final de un archivo CSV, de modo que no sea necesario recapturar la información cada vez que se corre el programa.
+- Las jornadas simuladas y la tabla de posiciones se guardan al final de un archivo CSV, de modo que no sea necesario recapturar la información cada vez que se corre el programa.
 
 ---
 
