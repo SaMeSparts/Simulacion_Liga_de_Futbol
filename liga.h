@@ -1,3 +1,5 @@
+// Diego Antonio González Cortés
+
 #ifndef LIGA_H
 #define LIGA_H
 
@@ -10,98 +12,48 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include "equipo.h"  
 using namespace std;
 
 // =========================================================
-// ===== CLASE EQUIPO =====
-// Representa a un equipo con sus estadisticas
-// =========================================================
-class Equipo {
-private:
-    string nombre;
-    int puntos;
-    int golesFavor;
-    int golesContra;
-    int diferenciaGoles;
-
-public:
-    // ===== Constructor =====
-    Equipo(string n = "") {
-        nombre = n;
-        puntos = 0;
-        golesFavor = 0;
-        golesContra = 0;
-        diferenciaGoles = 0;
-    }
-
-    // ===== Getters =====
-    string getNombre() const { return nombre; }
-    int getPuntos() const { return puntos; }
-    int getGolesFavor() const { return golesFavor; }
-    int getGolesContra() const { return golesContra; }
-    int getDiferenciaGoles() const { return diferenciaGoles; }
-
-    // ===== Actualizar estadisticas =====
-    void actualizar(int gf, int gc) {
-        golesFavor += gf;
-        golesContra += gc;
-        diferenciaGoles = golesFavor - golesContra;
-
-        if (gf > gc)
-            puntos += 3; // victoria
-        else if (gf == gc)
-            puntos += 1; // empate
-        // sin puntos en derrota
-    }
-
-    // ===== Reiniciar estadisticas =====
-    void reiniciar() {
-        puntos = 0;
-        golesFavor = 0;
-        golesContra = 0;
-        diferenciaGoles = 0;
-    }
-
-    // ===== Comparador para ordenamiento =====
-    bool operator<(const Equipo& otro) const {
-        if (puntos != otro.puntos)
-            return puntos > otro.puntos; // mas puntos primero
-        if (diferenciaGoles != otro.diferenciaGoles)
-            return diferenciaGoles > otro.diferenciaGoles; // mejor diferencia
-        if (golesFavor != otro.golesFavor)
-            return golesFavor > otro.golesFavor; // mas goles
-        return nombre < otro.nombre; // alfabetico
-    }
-};
-
-// =========================================================
 // ===== ESTRUCTURA PARTIDO =====
-// Representa un enfrentamiento entre dos equipos
+// Representa un partido entre dos equipos, guardando los
+// nombres y los goles que hizo cada uno.
 // =========================================================
 struct Partido {
-    string local;
-    string visitante;
-    int golesLocal;
-    int golesVisitante;
+    string local;          // Nombre del equipo local
+    string visitante;      // Nombre del equipo visitante
+    int golesLocal;        // Goles anotados por el local
+    int golesVisitante;    // Goles anotados por el visitante
 };
 
-// =========================================================
+
 // ===== CLASE LIGA =====
-// Gestiona equipos, jornadas y resultados
-// =========================================================
+// Controla todo el funcionamiento de la liga:
+// - Carga los equipos desde un CSV
+// - Simula las jornadas con resultados aleatorios
+// - Guarda y muestra la tabla general
+// - Permite reiniciar la liga
+
 class Liga {
 private:
-    vector<Equipo> equipos;
-    vector<vector<Partido>> jornadas;
+    vector<Equipo> equipos;              // Lista de los 18 equipos
+    vector<vector<Partido>> jornadas;    // Resultados de las 17 jornadas
 
 public:
-    // ===== Constructor =====
+    // ===== CONSTRUCTOR =====
+    // Al crear la liga, se cargan los equipos desde el CSV
+    // y se inicializa el generador aleatorio.
+
     Liga() {
-        srand((unsigned)time(0));
+        srand((unsigned)time(0));  // Inicializa aleatoriedad
         cargarEquipos();
     }
 
-    // ===== Cargar equipos desde CSV =====
+    // ===== CARGAR EQUIPOS DESDE CSV =====
+    // Lee los nombres de los equipos desde un archivo
+    // llamado "equipos.csv" y los guarda en el vector.
+
     void cargarEquipos() {
         equipos.clear();
         ifstream archivo("equipos.csv");
@@ -113,19 +65,27 @@ public:
         }
 
         while (getline(archivo, linea)) {
-            if (linea.empty()) continue;
-            equipos.push_back(Equipo(linea));
+            if (linea.empty()) continue;      // Ignora líneas vacías
+            equipos.push_back(Equipo(linea)); // Crea el objeto Equipo
         }
         archivo.close();
     }
 
-    // ===== Simular una jornada completa =====
+    // ===== SIMULAR UNA JORNADA =====
+    // Se emparejan los equipos de forma aleatoria y se
+    // generan goles aleatorios entre 0 y 5.
+
     vector<Partido> simularJornada() {
         vector<Partido> jornada;
         vector<int> indices;
+
+        // Crea una lista con los índices de los equipos
         for (int i = 0; i < equipos.size(); i++) indices.push_back(i);
+
+        // Mezcla aleatoriamente los índices
         random_shuffle(indices.begin(), indices.end());
 
+        // Empareja los equipos de 2 en 2
         for (int i = 0; i < 18; i += 2) {
             Partido p;
             p.local = equipos[indices[i]].getNombre();
@@ -133,6 +93,7 @@ public:
             p.golesLocal = rand() % 6;
             p.golesVisitante = rand() % 6;
 
+            // Actualiza las estadísticas de cada equipo
             equipos[indices[i]].actualizar(p.golesLocal, p.golesVisitante);
             equipos[indices[i + 1]].actualizar(p.golesVisitante, p.golesLocal);
 
@@ -142,7 +103,9 @@ public:
         return jornada;
     }
 
-    // ===== Simular toda la liga (17 jornadas) =====
+    // ===== SIMULAR TODA LA LIGA =====
+    // Genera 17 jornadas completas, como en la Liga MX.
+
     void simularLiga() {
         jornadas.clear();
         reiniciarEstadisticas();
@@ -151,7 +114,10 @@ public:
         }
     }
 
-    // ===== Mostrar resultados de una jornada =====
+    // ===== MOSTRAR RESULTADOS DE UNA JORNADA =====
+    // Muestra en pantalla los partidos y sus resultados
+    // de la jornada seleccionada por el usuario.
+
     void mostrarJornada(int numJornada) {
         if (numJornada < 1 || numJornada > jornadas.size()) {
             cout << "Numero de jornada invalido." << endl;
@@ -173,9 +139,17 @@ public:
         }
     }
 
-    // ===== Mostrar tabla general ordenada =====
+    // ===== MOSTRAR TABLA GENERAL =====
+    // Ordena a los equipos por puntos, diferencia de goles
+    // y goles a favor, y muestra la tabla completa.
+
     void mostrarTabla() {
-        sort(equipos.begin(), equipos.end());
+        sort(equipos.begin(), equipos.end(), [](const Equipo& a, const Equipo& b) {
+            if (a.getPuntos() != b.getPuntos()) return a.getPuntos() > b.getPuntos();
+            if (a.getDiferencia() != b.getDiferencia()) return a.getDiferencia() > b.getDiferencia();
+            if (a.getGolesFavor() != b.getGolesFavor()) return a.getGolesFavor() > b.getGolesFavor();
+            return a.getNombre() < b.getNombre();
+        });
 
         cout << "\n===== TABLA GENERAL =====" << endl;
         cout << left << setw(20) << "Equipo"
@@ -190,18 +164,23 @@ public:
                  << setw(8) << e.getPuntos()
                  << setw(8) << e.getGolesFavor()
                  << setw(8) << e.getGolesContra()
-                 << setw(8) << e.getDiferenciaGoles() << endl;
+                 << setw(8) << e.getDiferencia() << endl;
         }
     }
 
-    // ===== Reiniciar liga =====
+    // ===== REINICIAR LIGA =====
+    // Borra las jornadas jugadas y reinicia todas las
+    // estadísticas de los equipos a cero.
+
     void reiniciarLiga() {
         reiniciarEstadisticas();
         jornadas.clear();
     }
 
 private:
-    // ===== Reiniciar estadisticas de todos los equipos =====
+    // ===== REINICIAR ESTADISTICAS =====
+    // Recorre todos los equipos y los deja como al inicio.
+
     void reiniciarEstadisticas() {
         for (auto& e : equipos) {
             e.reiniciar();
