@@ -1,0 +1,187 @@
+Jornada 1
+America,Tijuana,4,5
+Atlas,Toluca,2,2
+Atletico San Luis,Tigres UANL,5,3
+Cruz Azul,Santos Laguna,4,5
+Chivas,Queretaro,2,0
+Juarez,Pumas UNAM,4,3
+Leon,Puebla,4,2
+Mazatlan,Pachuca,4,2
+Monterrey,Necaxa,0,0
+
+Jornada 2
+Atlas,Tijuana,2,4
+Atletico San Luis,America,1,5
+Cruz Azul,Toluca,0,5
+Chivas,Tigres UANL,3,2
+Juarez,Santos Laguna,0,0
+Leon,Queretaro,3,2
+Mazatlan,Pumas UNAM,4,1
+Monterrey,Puebla,5,3
+Necaxa,Pachuca,2,1
+
+Jornada 3
+Atletico San Luis,Tijuana,2,5
+Cruz Azul,Atlas,1,4
+Chivas,America,3,1
+Juarez,Toluca,1,5
+Leon,Tigres UANL,0,4
+Mazatlan,Santos Laguna,2,2
+Monterrey,Queretaro,3,0
+Necaxa,Pumas UNAM,4,2
+Pachuca,Puebla,4,3
+
+Jornada 4
+Cruz Azul,Tijuana,4,0
+Chivas,Atletico San Luis,5,0
+Juarez,Atlas,0,2
+Leon,America,2,1
+Mazatlan,Toluca,3,1
+Monterrey,Tigres UANL,2,0
+Necaxa,Santos Laguna,2,5
+Pachuca,Queretaro,4,0
+Puebla,Pumas UNAM,5,2
+
+Jornada 5
+Chivas,Tijuana,3,2
+Juarez,Cruz Azul,2,5
+Leon,Atletico San Luis,4,0
+Mazatlan,Atlas,3,2
+Monterrey,America,3,4
+Necaxa,Toluca,5,3
+Pachuca,Tigres UANL,0,3
+Puebla,Santos Laguna,2,2
+Pumas UNAM,Queretaro,3,5
+
+Jornada 6
+Juarez,Tijuana,0,1
+Leon,Chivas,3,2
+Mazatlan,Cruz Azul,3,0
+Monterrey,Atletico San Luis,1,2
+Necaxa,Atlas,1,1
+Pachuca,America,3,2
+Puebla,Toluca,4,0
+Pumas UNAM,Tigres UANL,4,1
+Queretaro,Santos Laguna,3,0
+
+Jornada 7
+Leon,Tijuana,0,0
+Mazatlan,Juarez,2,1
+Monterrey,Chivas,4,4
+Necaxa,Cruz Azul,0,5
+Pachuca,Atletico San Luis,1,1
+Puebla,Atlas,4,3
+Pumas UNAM,America,3,2
+Queretaro,Toluca,1,1
+Santos Laguna,Tigres UANL,2,0
+
+Jornada 8
+Mazatlan,Tijuana,2,0
+Monterrey,Leon,2,5
+Necaxa,Juarez,1,4
+Pachuca,Chivas,3,4
+Puebla,Cruz Azul,3,5
+Pumas UNAM,Atletico San Luis,2,5
+Queretaro,Atlas,3,0
+Santos Laguna,America,4,5
+Tigres UANL,Toluca,2,1
+
+Jornada 9
+Monterrey,Tijuana,5,4
+Necaxa,Mazatlan,0,1
+Pachuca,Leon,3,5
+Puebla,Juarez,0,3
+Pumas UNAM,Chivas,4,1
+Queretaro,Cruz Azul,4,1
+Santos Laguna,Atletico San Luis,2,1
+Tigres UANL,Atlas,5,3
+Toluca,America,4,4
+
+Jornada 10
+Necaxa,Tijuana,5,4
+Pachuca,Monterrey,0,1
+Puebla,Mazatlan,4,1
+Pumas UNAM,Leon,0,4
+Queretaro,Juarez,5,3
+Santos Laguna,Chivas,3,1
+Tigres UANL,Cruz Azul,4,2
+Toluca,Atletico San Luis,2,1
+America,Atlas,0,0
+
+Jornada 11
+Pachuca,Tijuana,5,0
+Puebla,Necaxa,0,4
+Pumas UNAM,Monterrey,3,0
+Queretaro,Mazatlan,1,4
+Santos Laguna,Leon,3,3
+Tigres UANL,Juarez,5,0
+Toluca,Chivas,4,2
+America,Cruz Azul,5,4
+Atlas,Atletico San Luis,0,3
+
+Jornada 12
+Puebla,Tijuana,4,5
+Pumas UNAM,Pachuca,2,0
+Queretaro,Necaxa,0,0
+Santos Laguna,Monterrey,3,2
+Tigres UANL,Mazatlan,5,0
+Toluca,Leon,2,2
+America,Juarez,1,0
+Atlas,Chivas,4,4
+Atletico San Luis,Cruz Azul,2,2
+
+Jornada 13
+Pumas UNAM,Tijuana,0,2
+Queretaro,Puebla,1,0
+Santos Laguna,Pachuca,5,5
+Tigres UANL,Necaxa,3,0
+Toluca,Monterrey,4,5
+America,Mazatlan,2,5
+Atlas,Leon,0,2
+Atletico San Luis,Juarez,1,5
+Cruz Azul,Chivas,5,1
+
+Jornada 14
+Queretaro,Tijuana,3,0
+Santos Laguna,Pumas UNAM,4,5
+Tigres UANL,Puebla,1,4
+Toluca,Pachuca,5,1
+America,Necaxa,2,1
+Atlas,Monterrey,4,1
+Atletico San Luis,Mazatlan,3,3
+Cruz Azul,Leon,0,3
+Chivas,Juarez,3,4
+
+Jornada 15
+Santos Laguna,Tijuana,2,1
+Tigres UANL,Queretaro,2,4
+Toluca,Pumas UNAM,3,5
+America,Puebla,1,5
+Atlas,Pachuca,0,3
+Atletico San Luis,Necaxa,4,2
+Cruz Azul,Monterrey,4,0
+Chivas,Mazatlan,1,1
+Juarez,Leon,4,3
+
+Jornada 16
+Tigres UANL,Tijuana,1,2
+Toluca,Santos Laguna,0,2
+America,Queretaro,3,0
+Atlas,Pumas UNAM,0,4
+Atletico San Luis,Puebla,5,3
+Cruz Azul,Pachuca,3,1
+Chivas,Necaxa,4,5
+Juarez,Monterrey,0,3
+Leon,Mazatlan,5,2
+
+Jornada 17
+Toluca,Tijuana,3,0
+America,Tigres UANL,1,0
+Atlas,Santos Laguna,4,2
+Atletico San Luis,Queretaro,2,5
+Cruz Azul,Pumas UNAM,5,0
+Chivas,Puebla,5,4
+Juarez,Pachuca,1,2
+Leon,Necaxa,4,4
+Mazatlan,Monterrey,3,0
+

@@ -1,23 +1,60 @@
-// Diego Antonio González Cortés | A01713489
-// TC1031 Programación de estructuras de datos y algoritmos fundamentales
-
+#include <iostream>
+#include <limits>
 #include "liga.h"
-
+using namespace std;
 
 int main() {
-    srand(time(0));
+    Liga liga; // Objeto principal
+    bool programaActivo = true;
+    int opcion = 0;
 
-    Liga liga;
-    liga.agregarEquipo("Barcelona");
-    liga.agregarEquipo("Real Madrid");
-    liga.agregarEquipo("Atletico");
-    liga.agregarEquipo("Sevilla");
+    while (programaActivo) {
+        cout << "\n===== SIMULACION DE LIGA DE FUTBOL =====" << endl;
+        cout << "1. Simular liga completa" << endl;
+        cout << "2. Ver resultados de una jornada" << endl;
+        cout << "3. Ver tabla general" << endl;
+        cout << "4. Reiniciar liga" << endl;
+        cout << "5. Salir" << endl;
+        cout << "Seleccione una opcion: ";
 
-    cout << "Simulando partidos..." << endl;
-    liga.simularJornada();
+        if (!(cin >> opcion)) {
+            // Limpia la entrada si no es un numero
+            cout << "\nEntrada invalida. Por favor ingrese un numero entre 1 y 5." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
-    cout << "\nTabla de posiciones:\n";
-    liga.mostrarTabla();
+        if (opcion == 1) {
+            liga.simularLiga();
+            cout << "\nLiga simulada correctamente." << endl;
+        } 
+        else if (opcion == 2) {
+            int jornada;
+            cout << "\nIngrese el numero de jornada (1 - 17): ";
+            if (!(cin >> jornada) || jornada < 1 || jornada > 17) {
+                cout << "Numero de jornada invalido." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+            liga.mostrarJornada(jornada);
+        } 
+        else if (opcion == 3) {
+            liga.mostrarTabla();
+        } 
+        else if (opcion == 4) {
+            liga.reiniciarLiga();
+            cout << "\nLa liga ha sido reiniciada correctamente." << endl;
+        } 
+        else if (opcion == 5) {
+            cout << "\nSaliendo del programa..." << endl;
+            programaActivo = false; 
+        } 
+        else {
+            cout << "\nOpcion invalida. Intente nuevamente." << endl;
+        }
+    }
 
     return 0;
-};
+}
