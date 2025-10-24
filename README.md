@@ -14,7 +14,7 @@ El programa genera partidos y resultados aleatorios, actualiza las estadísticas
    - Ver la tabla general de posiciones ordenada por puntos, diferencia de goles y goles a favor.  
    - Reiniciar la liga para volver a simular una nueva temporada.  
 4. Todos los resultados de los partidos son generados de manera aleatoria.  
-5. La tabla general se ordena utilizando un algoritmo de ordenamiento eficiente, como QuickSort o `std::sort` de C++.
+5. La tabla general se ordena utilizando un algoritmo de ordenamiento eficiente, como QuickSort o `std::sort` de C++ (Introsort).
 
 ---
 
@@ -24,23 +24,29 @@ El programa genera partidos y resultados aleatorios, actualiza las estadísticas
 - Simulación automática de 17 jornadas completas.  
 - Visualización de la tabla de posiciones general y resultados de cada jornada.  
 - Menú interactivo que permite simular, consultar jornadas, ver la tabla general y reiniciar la liga.  
-- Ordenamiento de la tabla según criterios: puntos, diferencia de goles, goles a favor y nombre del equipo.
+- Ordenamiento de la tabla según criterios: puntos, diferencia de goles, goles a favor y nombre del equipo.  
 
 ---
 
 ## SICT0302B: Toma decisiones
 
 ### Selecciona y usa una estructura lineal adecuada al problema
-Se utiliza un `vector<Equipo>` para almacenar los 18 equipos porque permite acceder rápidamente a cada equipo mediante índices y facilita recorrerlos para actualizar estadísticas tras cada partido.  
+Se utiliza una **lista doblemente ligada** para almacenar los 18 equipos, ya que permite realizar inserciones y eliminaciones en tiempo O(1) sin necesidad de redimensionar el contenedor.  
+Esto la hace más flexible que un `vector`, especialmente al reiniciar o actualizar los datos de cada jornada.  
 Cada equipo es un objeto que contiene nombre, puntos, goles a favor, goles en contra y diferencia de goles.  
-Los elementos se pueden actualizar y reiniciar usando funciones del programa como simular jornada, actualizar estadísticas y reiniciar liga.
+Los elementos se pueden actualizar y reiniciar mediante funciones específicas del programa como `simularJornada()`, `actualizarEstadisticas()` y `reiniciarLiga()`.
 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema
-Para organizar la tabla de posiciones se utiliza `std::sort` de C++, que implementa Introsort (mezcla de QuickSort y HeapSort). Esto permite ordenar los equipos por puntos, diferencia de goles y goles a favor de manera eficiente.  
-Las funciones donde se usa el ordenamiento se encuentran en `liga.cpp` en las funciones que generan la tabla general.
+Para organizar la tabla de posiciones se utiliza `std::sort` de C++, que implementa **Introsort**, una combinación de **QuickSort, HeapSort e InsertionSort**.  
+- En los primeros niveles de recursión utiliza QuickSort por su velocidad promedio O(n log n).  
+- Si la recursión es muy profunda (indicador de peor caso), cambia a HeapSort para garantizar O(n log n).  
+- Para pequeños subconjuntos, usa InsertionSort en O(n²), optimizando el rendimiento en arreglos casi ordenados.  
+
+De esta forma, se garantiza una complejidad estable y eficiente en todos los escenarios.  
+Las funciones donde se usa el ordenamiento se encuentran en `liga.cpp`, dentro de la parte que genera la tabla general.
 
 ### Uso de árbol o estructura adicional (opcional)
-No se requiere un BST para este proyecto, pero si se deseara buscar equipos por rangos de puntos o por estadísticas rápidamente, se podría implementar un `unordered_map` o un árbol balanceado.
+No se requiere un árbol binario para este proyecto, pero si se deseara realizar búsquedas por nombre o estadísticas de manera más rápida, podría implementarse un `unordered_map` o un árbol balanceado como `map` para búsquedas en O(log n).
 
 ---
 
@@ -54,35 +60,43 @@ Presenta casos de prueba correctos y completos para todas las funciones y proced
 
 Hace un análisis de complejidad correcto y completo de los componentes del programa:
 
-**Lista de equipos (vector)**  
-- Acceso por índice: O(1)  
-- Actualización de estadísticas: O(1) por equipo  
-- Reinicio de estadísticas: O(N), N = 18
+**Lista doblemente ligada**  
+- **Inserción:**  
+  - Mejor caso: O(1)  
+  - Promedio: O(1)  
+  - Peor caso: O(1)  
+- **Eliminación:**  
+  - Mejor caso: O(1)  
+  - Promedio: O(1)  
+  - Peor caso: O(1)  
+- **Búsqueda (por nombre o posición):**  
+  - Mejor caso: O(1)  
+  - Promedio: O(n/2)  
+  - Peor caso: O(n)  
+- **Reinicio de estadísticas:** O(n), donde n = 18 equipos.
 
-**Ordenamiento de tabla (std::sort / Introsort)**  
-- Complejidad promedio: O(N log N)  
-- Peor caso: O(N log N) garantizado por Introsort
+**Ordenamiento de tabla (`std::sort` / Introsort)**  
+- Mejor caso (casi ordenado): O(n)  
+- Promedio: O(n log n)  
+- Peor caso: O(n log n), garantizado por el cambio interno a HeapSort.  
 
 **Simulación de jornadas**  
-- Generación de una jornada (9 partidos): O(N)  
-- Generación de todas las jornadas (17): O(N * 17) ≈ O(N) para N = 18
+- Generación de una jornada (9 partidos): O(n)  
+- Generación de todas las jornadas (17): O(17n) ≈ O(n) para n = 18  
 
 ---
 
 ## SICT0303B: Implementa acciones científicas
 
 Implementa mecanismos para consultar información de las estructuras de manera correcta y útil dentro del programa:  
-- El usuario puede buscar información de cada equipo por índice o nombre.  
-- Se puede visualizar la tabla general ordenada.  
-- Se puede consultar los resultados de cualquier jornada simulada.  
-- Se puede reiniciar la liga y simular nuevamente.
+- El usuario puede buscar información de cada equipo por nombre o posición.  
+- Se puede visualizar la tabla general ordenada en tiempo real.  
+- Se pueden consultar los resultados de cualquier jornada simulada.  
+- Se puede reiniciar la liga y volver a simular una nueva temporada desde cero.  
 
-Implementa mecanismos de lectura de archivos para cargar datos a las estructuras:  
-- Los equipos se cargan desde un archivo `equipos.csv`.  
-- Los resultados de jornadas y la tabla general se guardan en CSV.  
-
-Implementa mecanismos de escritura de archivos para guardar datos de manera correcta:  
-- Las jornadas simuladas y la tabla de posiciones se guardan al final de un archivo CSV, de modo que no sea necesario recapturar la información cada vez que se corre el programa.
+Implementa mecanismos de lectura y escritura de archivos para manejar datos de forma eficiente:  
+- Los equipos se cargan desde el archivo `equipos.csv` al iniciar la simulación.  
+- Los resultados de las jornadas y la tabla general se guardan automáticamente en `resultados.csv`.  
+- Estos archivos permiten mantener la información entre ejecuciones y facilitan la validación de datos.  
 
 ---
-
