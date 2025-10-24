@@ -28,6 +28,7 @@ private:
 
 public:
     // Constructor
+    // Complejidad: O(1)
     Liga() {
         cabeza = nullptr;
         cola = nullptr;
@@ -35,6 +36,7 @@ public:
     }
 
     // Destructor para liberar memoria
+    // Complejidad: O(n)
     ~Liga() {
         Nodo* temp = cabeza;
         while(temp) {
@@ -45,6 +47,7 @@ public:
     }
 
     // Carga los equipos desde un archivo CSV
+    // Complejidad: O(n)
     void cargarEquiposDesdeCSV(const string& archivo) {
         ifstream file(archivo);
         string nombre;
@@ -56,6 +59,7 @@ public:
     }
 
     // Inserta un equipo al final de la lista doblemente ligada
+    // Complejidad: O(1)
     void insertarEquipo(const Equipo& e) {
         Nodo* nuevo = new Nodo(e);
         if (!cabeza) {
@@ -68,6 +72,7 @@ public:
     }
 
     // Reinicia los datos de todos los equipos
+    // Complejidad: O(n)
     void reiniciarLiga() {
         Nodo* temp = cabeza;
         while (temp) {
@@ -78,6 +83,7 @@ public:
     }
 
     // Simula toda la liga completa (17 jornadas)
+    // Complejidad: O(n²)
     void simularLiga() {
         vector<Nodo*> equipos;
         Nodo* temp = cabeza;
@@ -110,6 +116,7 @@ public:
     }
 
     // Muestra los partidos de una jornada
+    // Complejidad: O(n)
     void mostrarJornada(int n) const {
         if (n < 1 || n > (int)jornadas.size()) {
             cout << "numero de jornada invalido\n";
@@ -122,6 +129,7 @@ public:
     }
 
     // Muestra la tabla general ordenada (formato bonito como antes)
+    // Complejidad: O(n log n)
     void mostrarTablaGeneral() {
         vector<Equipo> tabla;
         Nodo* temp = cabeza;
@@ -164,6 +172,7 @@ public:
     }
 
     // Guarda la tabla general en CSV
+    // Complejidad: O(n)
     void guardarTablaCSV(const vector<Equipo>& tabla) const {
         ofstream file("tabla_general.csv");
         file << "equipo,puntos,golesFavor,golesContra,diferencia\n";
@@ -174,6 +183,7 @@ public:
     }
 
     // Guarda los resultados en CSV
+    // Complejidad: O(n²)
     void guardarResultadosCSV() const {
         ofstream file("resultados.csv");
         file << "jornada,local,visitante,golesLocal,golesVisitante\n";

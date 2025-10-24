@@ -18,6 +18,7 @@ private:
 
 public:
     // Constructor del equipo, inicia con todo en 0
+    // Complejidad: O(1)
     Equipo(string n = "") {
         nombre = n;
         puntos = 0;
@@ -27,6 +28,7 @@ public:
     }
 
     // Getters para acceder a los datos
+    // Complejidad: O(1)
     string getNombre() const { return nombre; }
     int getPuntos() const { return puntos; }
     int getGolesFavor() const { return golesFavor; }
@@ -34,6 +36,7 @@ public:
     int getDiferencia() const { return diferenciaGoles; }
 
     // Esta funcion pone todo en 0 para reiniciar el equipo
+    // Complejidad: O(1)
     void reiniciar() {
         puntos = 0;
         golesFavor = 0;
@@ -42,6 +45,7 @@ public:
     }
 
     // Esta funcion actualiza los datos del equipo despues de un partido
+    // Complejidad: O(1)
     void actualizar(int gf, int gc) {
         golesFavor += gf;
         golesContra += gc;
@@ -52,6 +56,7 @@ public:
     }
 
     // Sirve para guardar en formato csv
+    // Complejidad: O(1)
     string toCSV() const {
         return nombre + "," + to_string(puntos) + "," +
                to_string(golesFavor) + "," +

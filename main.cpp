@@ -6,11 +6,20 @@
 using namespace std;
 
 int main() {
-    Liga liga; // Creamos un objeto de tipo Liga, que maneja todos los equipos y jornadas
-    liga.cargarEquiposDesdeCSV("equipos.csv"); // Cargamos los equipos desde el CSV
+    // Creamos un objeto de tipo Liga, que maneja todos los equipos y jornadas
+    Liga liga; // Complejidad inicial: O(1)
+    // Cargamos los equipos desde el CSV
+    liga.cargarEquiposDesdeCSV("equipos.csv"); // Complejidad: O(n)
 
     bool programaActivo = true; // Variable que controla si el programa sigue corriendo
     int opcion = 0; // Aqui se guarda la opcion que el usuario elige del menu
+
+    // Ciclo principal del menú
+    // Complejidad: depende de las acciones del usuario
+    // - Simular liga: O(n²)
+    // - Mostrar tabla: O(n log n)
+    // - Mostrar jornada: O(n)
+    // - Reiniciar liga: O(n)
 
     // Mientras el programa este activo, se repite el menu
     while (programaActivo) {
@@ -33,13 +42,15 @@ int main() {
 
         // Si el usuario elige la opcion 1, se simula toda la liga
         if (opcion == 1) {
-            liga.simularLiga(); // simulamos todas las jornadas
-            liga.guardarResultadosCSV(); // guardamos los resultados en CSV
+            // simulamos todas las jornadas
+            liga.simularLiga();              // O(n²)
+            // guardamos los resultados en CSV
+            liga.guardarResultadosCSV();     // O(n²) 
             cout << "\nLiga simulada correctamente y resultados guardados." << endl;
         } 
         // Si elige la opcion 2, se muestra la tabla general ordenada
         else if (opcion == 2) {
-            liga.mostrarTablaGeneral();
+            liga.mostrarTablaGeneral();     // O(n log n)
         } 
         // Si elige la opcion 3, se muestran los resultados de una jornada especifica
         else if (opcion == 3) {
@@ -51,11 +62,12 @@ int main() {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 continue; // regresamos al menu
             }
-            liga.mostrarJornada(jornada); // mostramos la jornada
+            // mostramos la jornada
+            liga.mostrarJornada(jornada);   // O(n) 
         } 
         // Si elige la opcion 4, se reinician todas las estadisticas
         else if (opcion == 4) {
-            liga.reiniciarLiga();
+            liga.reiniciarLiga();           // O(n)
             cout << "\nLa liga ha sido reiniciada correctamente." << endl;
         } 
         // Si elige la opcion 5, se sale del programa
