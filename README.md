@@ -79,7 +79,7 @@ Hace un análisis de complejidad correcto y completo de los componentes del prog
 
 **Simulación de jornadas**  
 - Generación de una jornada (9 partidos): O(n)  
-- Generación de todas las jornadas (17): O(17n) ≈ O(n) para n = 18  
+- Generación de todas las jornadas (17): O(n^2)
 
 ---
 
