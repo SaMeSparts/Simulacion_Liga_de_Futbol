@@ -7,22 +7,17 @@
 #include <string>
 using namespace std;
 
-
-// ===== CLASE EQUIPO =====
-// Esta clase representa a un equipo de fútbol.
-// Guarda su nombre y todas sus estadísticas de la temporada.
-
+// Clase equipo que guarda los datos de cada equipo
 class Equipo {
 private:
-    string nombre;         // Nombre del equipo
-    int puntos;            // Puntos totales obtenidos
-    int golesFavor;        // Goles anotados
-    int golesContra;       // Goles recibidos
-    int diferenciaGoles;   // GolesFavor - GolesContra
+    string nombre;
+    int puntos;
+    int golesFavor;
+    int golesContra;
+    int diferenciaGoles;
 
 public:
-    // ===== CONSTRUCTOR =====
-    // Crea un equipo con su nombre y estadísticas inicializadas en cero.
+    // Constructor del equipo, inicia con todo en 0
     Equipo(string n = "") {
         nombre = n;
         puntos = 0;
@@ -31,16 +26,14 @@ public:
         diferenciaGoles = 0;
     }
 
-    // ===== GETTERS =====
-    // Devuelven los datos del equipo (sin permitir modificarlos).
+    // Getters para acceder a los datos
     string getNombre() const { return nombre; }
     int getPuntos() const { return puntos; }
     int getGolesFavor() const { return golesFavor; }
     int getGolesContra() const { return golesContra; }
     int getDiferencia() const { return diferenciaGoles; }
 
-    // ===== REINICIAR ESTADÍSTICAS =====
-    // Deja todos los valores en cero, como si comenzara una nueva temporada.
+    // Esta funcion pone todo en 0 para reiniciar el equipo
     void reiniciar() {
         puntos = 0;
         golesFavor = 0;
@@ -48,24 +41,17 @@ public:
         diferenciaGoles = 0;
     }
 
-    // ===== ACTUALIZAR RESULTADO DE PARTIDO =====
-    // Suma los goles del partido y asigna puntos:
-    // 3 por ganar, 1 por empatar y 0 por perder.
+    // Esta funcion actualiza los datos del equipo despues de un partido
     void actualizar(int gf, int gc) {
         golesFavor += gf;
         golesContra += gc;
         diferenciaGoles = golesFavor - golesContra;
 
-        if (gf > gc)
-            puntos += 3; // Victoria
-        else if (gf == gc)
-            puntos += 1; // Empate
-        // Si pierde, no suma puntos
+        if (gf > gc) puntos += 3;   // si gana suma 3
+        else if (gf == gc) puntos += 1; // si empata suma 1
     }
 
-    // ===== FORMATO PARA GUARDAR EN CSV =====
-    // Devuelve un texto con los datos del equipo separados por comas.
-    // Esto permite guardar la información fácilmente en un archivo.
+    // Sirve para guardar en formato csv
     string toCSV() const {
         return nombre + "," + to_string(puntos) + "," +
                to_string(golesFavor) + "," +

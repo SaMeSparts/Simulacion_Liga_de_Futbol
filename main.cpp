@@ -6,63 +6,64 @@
 using namespace std;
 
 int main() {
-    Liga liga; // Creamos un objeto de tipo Liga, que maneja todo el sistema de equipos y jornadas
-    bool programaActivo = true; // Variable que controla si el programa sigue corriendo o termina
-    int opcion = 0; // Aquí se guarda la opción que el usuario elige del menú
+    Liga liga; // Creamos un objeto de tipo Liga, que maneja todos los equipos y jornadas
+    liga.cargarEquiposDesdeCSV("equipos.csv"); // Cargamos los equipos desde el CSV
 
-    // Mientras el programa esté activo, se repite el menú
+    bool programaActivo = true; // Variable que controla si el programa sigue corriendo
+    int opcion = 0; // Aqui se guarda la opcion que el usuario elige del menu
+
+    // Mientras el programa este activo, se repite el menu
     while (programaActivo) {
         // Mostramos las opciones disponibles
         cout << "\n===== SIMULACION DE LIGA DE FUTBOL =====" << endl;
         cout << "1. Simular liga completa" << endl;
-        cout << "2. Ver resultados de una jornada" << endl;
-        cout << "3. Ver tabla general" << endl;
+        cout << "2. Ver tabla general" << endl;
+        cout << "3. Ver resultados de una jornada" << endl;
         cout << "4. Reiniciar liga" << endl;
         cout << "5. Salir" << endl;
         cout << "Seleccione una opcion: ";
 
-        // Validamos que el usuario escriba un número y no una letra u otro símbolo
+        // Validamos que el usuario escriba un numero y no una letra u otro simbolo
         if (!(cin >> opcion)) {
             cout << "\nEntrada invalida. Por favor ingrese un numero entre 1 y 5." << endl;
-            // Si la entrada no es válida, limpiamos el error y vaciamos el buffer de entrada
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue; // Volvemos al inicio del ciclo sin hacer nada más
+            cin.clear(); // limpiamos el error
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // vaciamos el buffer de entrada
+            continue; // volvemos al inicio del ciclo
         }
 
-        // Si el usuario elige la opción 1, se simula toda la liga
+        // Si el usuario elige la opcion 1, se simula toda la liga
         if (opcion == 1) {
-            liga.simularLiga();
-            cout << "\nLiga simulada correctamente." << endl;
+            liga.simularLiga(); // simulamos todas las jornadas
+            liga.guardarResultadosCSV(); // guardamos los resultados en CSV
+            cout << "\nLiga simulada correctamente y resultados guardados." << endl;
         } 
-        // Si elige la opción 2, se muestran los resultados de una jornada específica
+        // Si elige la opcion 2, se muestra la tabla general ordenada
         else if (opcion == 2) {
+            liga.mostrarTablaGeneral();
+        } 
+        // Si elige la opcion 3, se muestran los resultados de una jornada especifica
+        else if (opcion == 3) {
             int jornada;
             cout << "\nIngrese el numero de jornada (1 - 17): ";
-            // Se valida que el número esté dentro del rango correcto
             if (!(cin >> jornada) || jornada < 1 || jornada > 17) {
                 cout << "Numero de jornada invalido." << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                continue; // Si no es válido, se regresa al menú
+                continue; // regresamos al menu
             }
-            liga.mostrarJornada(jornada); // Muestra los resultados de esa jornada
+            liga.mostrarJornada(jornada); // mostramos la jornada
         } 
-        // Si elige la opción 3, se muestra la tabla general ordenada
-        else if (opcion == 3) {
-            liga.mostrarTabla();
-        } 
-        // Si elige la opción 4, se reinician todas las estadísticas
+        // Si elige la opcion 4, se reinician todas las estadisticas
         else if (opcion == 4) {
             liga.reiniciarLiga();
             cout << "\nLa liga ha sido reiniciada correctamente." << endl;
         } 
-        // Si elige la opción 5, se sale del programa cambiando la variable de control
+        // Si elige la opcion 5, se sale del programa
         else if (opcion == 5) {
             cout << "\nSaliendo del programa..." << endl;
-            programaActivo = false; // Esto hace que el while termine
+            programaActivo = false; // cambia la variable para terminar el while
         } 
-        // Si escribe cualquier otra cosa, se muestra un mensaje de error
+        // Si escribe cualquier otra cosa, se muestra mensaje de error
         else {
             cout << "\nOpcion invalida. Intente nuevamente." << endl;
         }
