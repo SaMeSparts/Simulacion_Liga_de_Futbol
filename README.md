@@ -31,22 +31,19 @@ El programa genera partidos y resultados aleatorios, actualiza las estadísticas
 ## SICT0302B: Toma decisiones
 
 ### Selecciona y usa una estructura lineal adecuada al problema
-Se utiliza una **lista doblemente ligada** para almacenar los 18 equipos, ya que permite realizar inserciones y eliminaciones en tiempo O(1) sin necesidad de redimensionar el contenedor.  
+Se utiliza una lista doblemente ligada para almacenar los 18 equipos, ya que permite realizar inserciones y eliminaciones en tiempo O(1) sin necesidad de redimensionar el contenedor.  
 Esto la hace más flexible que un `vector`, especialmente al reiniciar o actualizar los datos de cada jornada.  
 Cada equipo es un objeto que contiene nombre, puntos, goles a favor, goles en contra y diferencia de goles.  
 Los elementos se pueden actualizar y reiniciar mediante funciones específicas del programa como `simularJornada()`, `actualizarEstadisticas()` y `reiniciarLiga()`.
 
 ### Selecciona un algoritmo de ordenamiento adecuado al problema
-Para organizar la tabla de posiciones se utiliza `std::sort` de C++, que implementa **Introsort**, una combinación de **QuickSort, HeapSort e InsertionSort**.  
+Para organizar la tabla de posiciones se utiliza `std::sort` de C++, que implementa Introsort, una combinación de QuickSort, HeapSort e InsertionSort.  
 - En los primeros niveles de recursión utiliza QuickSort por su velocidad promedio O(n log n).  
 - Si la recursión es muy profunda (indicador de peor caso), cambia a HeapSort para garantizar O(n log n).  
 - Para pequeños subconjuntos, usa InsertionSort en O(n²), optimizando el rendimiento en arreglos casi ordenados.  
 
 De esta forma, se garantiza una complejidad estable y eficiente en todos los escenarios.  
-Las funciones donde se usa el ordenamiento se encuentran en `liga.cpp`, dentro de la parte que genera la tabla general.
-
-### Uso de árbol o estructura adicional (opcional)
-No se requiere un árbol binario para este proyecto, pero si se deseara realizar búsquedas por nombre o estadísticas de manera más rápida, podría implementarse un `unordered_map` o un árbol balanceado como `map` para búsquedas en O(log n).
+Las funciones donde se usa el ordenamiento se encuentran en `liga.h`, dentro de la parte que genera la tabla general.
 
 ---
 
