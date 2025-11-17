@@ -6,24 +6,44 @@
 using namespace std;
 
 int main() {
-    // Creamos un objeto de tipo Liga, que maneja todos los equipos y jornadas
+    // Creamos un objeto Liga, que se encarga de manejar los equipos y las jornadas.
     Liga liga; // Complejidad inicial: O(1)
-    // Cargamos los equipos desde el CSV
-    liga.cargarEquiposDesdeCSV("equipos.csv"); // Complejidad: O(n)
+    
+    // Cargamos los equipos desde el archivo CSV a la lista ligada.
+    // Esta carga recorre el archivo y agrega cada equipo al final de la lista.
+    // Cada inserción cuesta O(1), así que todo el proceso es O(n).
+    liga.cargarEquiposDesdeCSV("equipos.csv"); // Complejidad Total: O(n)
 
-    bool programaActivo = true; // Variable que controla si el programa sigue corriendo
-    int opcion = 0; // Aqui se guarda la opcion que el usuario elige del menu
+    bool programaActivo = true; // Controla si el programa sigue en ejecución.
+    int opcion = 0; // Guarda la opción que el usuario selecciona en el menú.
 
-    // Ciclo principal del menú
-    // Complejidad: depende de las acciones del usuario
-    // - Simular liga: O(n²)
-    // - Mostrar tabla: O(n log n)
-    // - Mostrar jornada: O(n)
-    // - Reiniciar liga: O(n)
+    /*
+    * == DESGLOSE DE COMPLEJIDAD SEGÚN LA OPCIÓN DEL MENÚ ==
+    * El ciclo principal se repite hasta que el usuario elija salir.
+    * Dependiendo de la opción seleccionada, cambia el costo:
+    *
+    * 1. Simular liga (Opción 1) – O(n²)
+    *    Es la tarea más pesada porque genera todas las jornadas y partidos.
+    *    También guardar los resultados en CSV implica procesar todos los datos.
+    *
+    * 2. Ver tabla general (Opción 2) – O(n log n)
+    *    Copia los equipos a un vector (O(n)) y los ordena con std::sort,
+    *    que garantiza O(n log n).
+    *
+    * 3. Ver jornada (Opción 3) – O(n)
+    *    Accede rápidamente a la jornada y luego recorre los partidos de esa fecha,
+    *    que son aproximadamente n/2.
+    *
+    * 4. Reiniciar liga (Opción 4) – O(n)
+    *    Recorre la lista ligada para reiniciar los datos de cada equipo.
+    *
+    * 5. Salir (Opción 5) – O(1)
+    *    Solo cambia un valor lógico para terminar el ciclo.
+    */
 
-    // Mientras el programa este activo, se repite el menu
+    // Mientras el programa esté activo, el menú se sigue mostrando.
     while (programaActivo) {
-        // Mostramos las opciones disponibles
+        // Mostramos el menú al usuario.
         cout << "\n===== SIMULACION DE LIGA DE FUTBOL =====" << endl;
         cout << "1. Simular liga completa" << endl;
         cout << "2. Ver tabla general" << endl;
@@ -32,27 +52,25 @@ int main() {
         cout << "5. Salir" << endl;
         cout << "Seleccione una opcion: ";
 
-        // Validamos que el usuario escriba un numero y no una letra u otro simbolo
+        // Validación básica para evitar que el usuario ingrese letras u otros símbolos.
         if (!(cin >> opcion)) {
             cout << "\nEntrada invalida. Por favor ingrese un numero entre 1 y 5." << endl;
-            cin.clear(); // limpiamos el error
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // vaciamos el buffer de entrada
-            continue; // volvemos al inicio del ciclo
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
         }
 
-        // Si el usuario elige la opcion 1, se simula toda la liga
+        // Opción 1: Simula toda la liga completa.
         if (opcion == 1) {
-            // simulamos todas las jornadas
-            liga.simularLiga();              // O(n²)
-            // guardamos los resultados en CSV
-            liga.guardarResultadosCSV();     // O(n²) 
+            liga.simularLiga();          // O(n²)
+            liga.guardarResultadosCSV(); // O(n²)
             cout << "\nLiga simulada correctamente y resultados guardados." << endl;
         } 
-        // Si elige la opcion 2, se muestra la tabla general ordenada
+        // Opción 2: Muestra la tabla general ordenada por puntos.
         else if (opcion == 2) {
-            liga.mostrarTablaGeneral();     // O(n log n)
+            liga.mostrarTablaGeneral(); // O(n log n)
         } 
-        // Si elige la opcion 3, se muestran los resultados de una jornada especifica
+        // Opción 3: Muestra los resultados de una jornada específica.
         else if (opcion == 3) {
             int jornada;
             cout << "\nIngrese el numero de jornada (1 - 17): ";
@@ -60,26 +78,25 @@ int main() {
                 cout << "Numero de jornada invalido." << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                continue; // regresamos al menu
+                continue;
             }
-            // mostramos la jornada
-            liga.mostrarJornada(jornada);   // O(n) 
+            liga.mostrarJornada(jornada); // O(n)
         } 
-        // Si elige la opcion 4, se reinician todas las estadisticas
+        // Opción 4: Reinicia todas las estadísticas de la liga.
         else if (opcion == 4) {
-            liga.reiniciarLiga();           // O(n)
+            liga.reiniciarLiga(); // O(n)
             cout << "\nLa liga ha sido reiniciada correctamente." << endl;
         } 
-        // Si elige la opcion 5, se sale del programa
+        // Opción 5: Finaliza el programa.
         else if (opcion == 5) {
             cout << "\nSaliendo del programa..." << endl;
-            programaActivo = false; // cambia la variable para terminar el while
+            programaActivo = false;
         } 
-        // Si escribe cualquier otra cosa, se muestra mensaje de error
+        // Cualquier número fuera del rango marcado se considera inválido.
         else {
             cout << "\nOpcion invalida. Intente nuevamente." << endl;
         }
     }
 
-    return 0; // Fin del programa
+    return 0; // Fin del programa.
 }

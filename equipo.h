@@ -7,7 +7,8 @@
 #include <string>
 using namespace std;
 
-// Clase equipo que guarda los datos de cada equipo
+// Clase que representa a un equipo con toda su información
+// Todas las operaciones son O(1) porque solo trabajan con datos propios.
 class Equipo {
 private:
     string nombre;
@@ -17,7 +18,7 @@ private:
     int diferenciaGoles;
 
 public:
-    // Constructor del equipo, inicia con todo en 0
+    // Crea un equipo nuevo con todo en 0
     // Complejidad: O(1)
     Equipo(string n = "") {
         nombre = n;
@@ -27,7 +28,7 @@ public:
         diferenciaGoles = 0;
     }
 
-    // Getters para acceder a los datos
+    // Devuelve los datos del equipo
     // Complejidad: O(1)
     string getNombre() const { return nombre; }
     int getPuntos() const { return puntos; }
@@ -35,7 +36,7 @@ public:
     int getGolesContra() const { return golesContra; }
     int getDiferencia() const { return diferenciaGoles; }
 
-    // Esta funcion pone todo en 0 para reiniciar el equipo
+    // Regresa al equipo a su estado inicial (todo en 0)
     // Complejidad: O(1)
     void reiniciar() {
         puntos = 0;
@@ -44,18 +45,23 @@ public:
         diferenciaGoles = 0;
     }
 
-    // Esta funcion actualiza los datos del equipo despues de un partido
+    // Actualiza los datos del equipo después de un partido
+    // Suma goles y asigna puntos según el resultado
     // Complejidad: O(1)
     void actualizar(int gf, int gc) {
         golesFavor += gf;
         golesContra += gc;
         diferenciaGoles = golesFavor - golesContra;
 
-        if (gf > gc) puntos += 3;   // si gana suma 3
-        else if (gf == gc) puntos += 1; // si empata suma 1
+        if (gf > gc) {
+            puntos += 3;  // gana
+        } else if (gf == gc) {
+            puntos += 1;  // empate
+        }
+        // si pierde no suma puntos
     }
 
-    // Sirve para guardar en formato csv
+    // Devuelve los datos del equipo en formato CSV
     // Complejidad: O(1)
     string toCSV() const {
         return nombre + "," + to_string(puntos) + "," +

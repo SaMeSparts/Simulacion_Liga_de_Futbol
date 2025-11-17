@@ -11,6 +11,17 @@
 #include "partido.h"
 using namespace std;
 
+/*
+ * == EXPLICACIÓN DE POR QUÉ SE ELIGIÓ ESTA ESTRUCTURA DE DATOS ==
+ * Se decidió usar una Lista Doblemente Ligada para guardar los equipos.
+ * La razón principal es la siguiente:
+ *
+ * Inserciones rápidas: Al cargar los equipos desde el archivo CSV,
+ * cada elemento se agrega al final de la lista. Ese tipo de inserción
+ * toma tiempo constante O(1), así que todo el proceso completo
+ * termina siendo O(n). Es eficiente y directo.
+ */
+
 // Nodo para la lista doblemente ligada
 struct Nodo {
     Equipo equipo;
@@ -57,6 +68,13 @@ public:
         }
         file.close();
     }
+    // Inserta un equipo al final de la lista doblemente ligada.
+    // La operación siempre se hace usando el puntero 'cola', por eso:
+    // - Mejor caso: O(1)
+    // - Caso promedio: O(1)
+    // - Peor caso: O(1)
+    // La inserción al final es constante en todos los escenarios.
+
 
     // Inserta un equipo al final de la lista doblemente ligada
     // Complejidad: O(1)
@@ -70,6 +88,14 @@ public:
             cola = nuevo;
         }
     }
+
+    // Reinicia los datos de todos los equipos.
+// Esta operación siempre requiere recorrer los 'n' nodos de la lista,
+// por lo que su complejidad es:
+// - Mejor caso: O(n)
+// - Caso promedio: O(n)
+// - Peor caso: O(n)
+
 
     // Reinicia los datos de todos los equipos
     // Complejidad: O(n)
@@ -127,8 +153,44 @@ public:
             cout << p.mostrarResultado() << endl;
         }
     }
+    /*
+    * == EXPLICACIÓN DE POR QUÉ SE ELIGIÓ ESTE MÉTODO DE ORDENAMIENTO ==
+    * Para ordenar los datos, se decidió usar std::sort (que internamente usa Introsort)
+    * aplicado sobre un vector temporal. La elección se basa en puntos prácticos:
+    *
+    * 1. Es muy rápido: std::sort está altamente optimizado y normalmente trabaja
+    *    en O(n log n).
+    *
+    * 2. Maneja bien los peores casos: a diferencia de un Quicksort común, que puede
+    *    volverse muy lento en ciertas situaciones, Introsort detecta eso a tiempo
+    *    y cambia a Heapsort, manteniendo un tiempo garantizado de O(n log n).
+    *
+    * 3. Es más sencillo y seguro: ordenar directamente una lista ligada con un 
+    *    algoritmo avanzado (como MergeSort) es más complicado y fácil de equivocarse.
+    *    En cambio, pasar los datos a un vector y usar std::sort es más limpio,
+    *    más fácil de implementar y usa una función ya optimizada por la STL.
+    */
 
-    // Muestra la tabla general ordenada (formato bonito como antes)
+    /*
+    * == ANÁLISIS DE COMPLEJIDAD (Introsort) ==
+    * std::sort usa Introsort, un algoritmo híbrido que combina varias técnicas
+    * para mantener buen rendimiento en todo tipo de casos. Su funcionamiento es así:
+    *
+    * 1. Comienza usando Quicksort, que es muy rápido en la mayoría de situaciones.
+    * 2. Si detecta que la profundidad de recursión se hace muy grande (señal de que
+    *    podría caer en el peor caso O(n²)), cambia automáticamente a Heapsort,
+    *    asegurando que todo se mantenga en O(n log n).
+    * 3. Cuando las partes a ordenar son pequeñas, usa Insertion Sort, que es más
+    *    eficiente en esos tamaños.
+    *
+    * Gracias a esta combinación, el algoritmo logra:
+    * - Mejor caso: O(n log n)
+    * - Caso promedio: O(n log n)
+    * - Peor caso: O(n log n)
+    */
+
+
+    // Muestra la tabla general ordenada
     // Complejidad: O(n log n)
     void mostrarTablaGeneral() {
         vector<Equipo> tabla;
