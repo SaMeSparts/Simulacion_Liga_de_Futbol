@@ -95,3 +95,126 @@ Implementa mecanismos de lectura y escritura de archivos para manejar datos de f
 - Los resultados de **todos los partidos** se guardan en `resultados.csv`.
 - La **tabla general de posiciones** generada se guarda en `tabla_general.csv`.
 - Estos archivos permiten mantener la información entre ejecuciones y facilitan la validación de datos.
+
+---
+
+##  Evidencia de Problemas de Programación
+
+**LeetCode Perfil:** [SaMesparts](https://leetcode.com/u/SaMesparts/)  
+
+
+## Problemas Resueltos
+
+### 1. Minimum Replacements to Sort the Array (Hard)
+** Problema:** [LeetCode 2366](https://leetcode.com/problems/minimum-replacements-to-sort-the-array/)  
+** Video Explicativo:** [Ver en YouTube]([https://youtu.be/T-RzodNyZk8])  
+** Solución:** [Ver Solución](https://leetcode.com/problems/minimum-replacements-to-sort-the-array/submissions/1820940051)
+
+** Análisis y Estrategia:**
+El objetivo es ordenar el arreglo dividiendo elementos en partes más pequeñas. La estrategia óptima es un enfoque **Greedy (avaro) inverso**:
+* Iteramos desde el último elemento hacia el primero. El último elemento dicta el límite máximo (`next`) para su vecino izquierdo.
+* Si un número `nums[i]` es mayor que `next`, debemos dividirlo en la menor cantidad de partes posibles para que ninguna parte supere a `next`.
+* Usamos la fórmula `(nums[i] + next - 1) / next` para calcular las partes necesarias (división techo).
+* El nuevo límite `next` será el resultado de la división, para mantener los números lo más grandes posible hacia la izquierda.
+
+** Código Principal:**
+```cpp
+#include <vector>
+#include <cmath>
+using namespace std;
+
+class Solution {
+public:
+    long long minimumReplacement(vector<int>& nums) {
+        long long ops = 0;
+        int n = nums.size();
+        long long next = nums[n - 1]; // último elemento
+        for (int i = n - 2; i >= 0; --i) {
+            if (nums[i] > next) {
+                long long parts = (nums[i] + next - 1) / next; // ceil division
+                ops += parts - 1; 
+                next = nums[i] / parts; // nuevo valor máximo permitido
+            } else {
+                next = nums[i];
+            }
+        }
+        return ops;
+    }
+};
+
+```
+
+### 2. Balanced Binary Tree (Easy)
+** Problema:** [LeetCode 110](https://leetcode.com/problems/balanced-binary-tree/)  
+** Video Explicativo:** [Ver en YouTube]([https://youtu.be/u8_72xqOl8o])  
+** Solución:** [Ver Solución](https://leetcode.com/problems/balanced-binary-tree/submissions/1820939492)
+
+** Análisis y Estrategia:**
+Un árbol está balanceado si la diferencia de alturas entre subárboles izquierdo y derecho no es mayor a 1.
+* Utilicé DFS (Depth First Search) con un enfoque Bottom-Up para eficiencia O(n).
+* En lugar de calcular la altura repetidamente, la función retorna la altura si el subárbol es válido, o -1 si encuentra un desbalance.
+* Si recibimos un -1 de cualquier hijo, propagamos el -1 inmediatamente hacia arriba, evitando cálculos innecesarios.
+
+** Código Principal:**
+
+```
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        return height(root) != -1;
+    }
+private:
+    int height(TreeNode* node) {
+        if (node == nullptr) return 0;
+        int leftH = height(node->left);
+        if (leftH == -1) return -1;
+        int rightH = height(node->right);
+        if (rightH == -1) return -1;
+        if (std::abs(leftH - rightH) > 1) return -1;
+        return 1 + std::max(leftH, rightH);
+    }
+};
+
+```
+### 3. Product of Array Except Self (Medium)
+** Problema:** [LeetCode 238](https://leetcode.com/problems/product-of-array-except-self/)  
+** Video Explicativo:** [Ver en YouTube]([https://youtu.be/hnfWmItGVQY])  
+** Solución:** [Ver Solución](https://leetcode.com/problems/product-of-array-except-self/submissions/1820940298)
+
+** Análisis y Estrategia:**
+El problema requiere solución en O(n) y sin usar división.
+* La lógica se basa en Prefijos y Sufijos. `ans[i]` es igual al producto de todos los números a la izquierda de `i` por todos los a la derecha.
+* Paso 1: Llenamos el arreglo `answer` con los productos acumulados de izquierda a derecha (prefijos).
+* Paso 2: Recorremos de derecha a izquierda manteniendo una variable `rightProduct` y multiplicándola con el valor que ya existe en `answer`.
+* Esto optimiza el espacio a O(1) extra
+
+** Código Principal:**
+
+```
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> answer(n);
+        
+        int leftProduct = 1;
+        // Primer pase: productos a la izquierda
+        for (int i = 0; i < n; i++) {
+            answer[i] = leftProduct;
+            leftProduct *= nums[i];
+        }
+        
+        int rightProduct = 1;
+        // Segundo pase: productos a la derecha
+        for (int i = n - 1; i >= 0; i--) {
+            answer[i] *= rightProduct;
+            rightProduct *= nums[i];
+        }
+        
+        return answer;
+    }
+};
+```
