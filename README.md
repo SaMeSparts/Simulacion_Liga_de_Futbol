@@ -157,7 +157,7 @@ Un árbol está balanceado si la diferencia de alturas entre subárboles izquier
 
 **Código Principal:**
 
-```
+```cpp
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
@@ -190,7 +190,7 @@ El problema requiere solución en O(n) y sin usar división.
 
 **Código Principal:**
 
-```
+```cpp
 #include <vector>
 using namespace std;
 
