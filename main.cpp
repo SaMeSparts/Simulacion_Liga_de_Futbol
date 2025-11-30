@@ -18,28 +18,26 @@ int main() {
     int opcion = 0; // Guarda la opción que el usuario selecciona en el menú.
 
     /*
-    * == DESGLOSE DE COMPLEJIDAD SEGÚN LA OPCIÓN DEL MENÚ ==
-    * El ciclo principal se repite hasta que el usuario elija salir.
-    * Dependiendo de la opción seleccionada, cambia el costo:
-    *
-    * 1. Simular liga (Opción 1) – O(n²)
-    *    Es la tarea más pesada porque genera todas las jornadas y partidos.
-    *    También guardar los resultados en CSV implica procesar todos los datos.
-    *
-    * 2. Ver tabla general (Opción 2) – O(n log n)
-    *    Copia los equipos a un vector (O(n)) y los ordena con std::sort,
-    *    que garantiza O(n log n).
-    *
-    * 3. Ver jornada (Opción 3) – O(n)
-    *    Accede rápidamente a la jornada y luego recorre los partidos de esa fecha,
-    *    que son aproximadamente n/2.
-    *
-    * 4. Reiniciar liga (Opción 4) – O(n)
-    *    Recorre la lista ligada para reiniciar los datos de cada equipo.
-    *
-    * 5. Salir (Opción 5) – O(1)
-    *    Solo cambia un valor lógico para terminar el ciclo.
-    */
+     * == DESGLOSE DE COMPLEJIDAD SEGÚN LA OPCIÓN DEL MENÚ ==
+     * El ciclo principal se repite hasta que el usuario elija salir.
+     * Dependiendo de la opción seleccionada, cambia el costo:
+     *
+     * 1. Simular liga (Opción 1) – O(n²)
+     * Es la tarea más pesada porque genera todas las jornadas y partidos.
+     *
+     * 2. Ver tabla general (Opción 2) – O(n log n)
+     * Implica copiar lista a vector (O(n)) y ordenar (O(n log n)).
+     *
+     * 3. Ver jornada (Opción 3) – O(n)
+     * Accede y recorre los partidos de esa fecha.
+     * * 4. Consultar equipo (Opción 4) - O(n)
+     * Realiza una búsqueda lineal en la lista ligada para encontrar al equipo.
+     *
+     * 5. Reiniciar liga (Opción 5) – O(n)
+     * Recorre la lista ligada para reiniciar los datos de cada equipo.
+     *
+     * 6. Salir (Opción 6) – O(1)
+     */
 
     // Mientras el programa esté activo, el menú se sigue mostrando.
     while (programaActivo) {
@@ -48,13 +46,14 @@ int main() {
         cout << "1. Simular liga completa" << endl;
         cout << "2. Ver tabla general" << endl;
         cout << "3. Ver resultados de una jornada" << endl;
-        cout << "4. Reiniciar liga" << endl;
-        cout << "5. Salir" << endl;
+        cout << "4. Consultar estadisticas de un equipo" << endl; // NUEVA OPCION
+        cout << "5. Reiniciar liga" << endl;
+        cout << "6. Salir" << endl;
         cout << "Seleccione una opcion: ";
 
         // Validación básica para evitar que el usuario ingrese letras u otros símbolos.
         if (!(cin >> opcion)) {
-            cout << "\nEntrada invalida. Por favor ingrese un numero entre 1 y 5." << endl;
+            cout << "\nEntrada invalida. Por favor ingrese un numero entre 1 y 6." << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
@@ -82,13 +81,33 @@ int main() {
             }
             liga.mostrarJornada(jornada); // O(n)
         } 
-        // Opción 4: Reinicia todas las estadísticas de la liga.
+        // Opción 4: [NUEVA] Consulta datos de un equipo específico
         else if (opcion == 4) {
+            string nombreBuscado;
+            cout << "\nIngrese el nombre del equipo (Tal cual aparece en la lista): ";
+            cin.ignore(); // Limpiar el buffer del enter anterior
+            getline(cin, nombreBuscado);
+
+            // Llamamos a la función de búsqueda de la lista
+            Equipo* e = liga.consultarEquipo(nombreBuscado);
+
+            if (e != nullptr) {
+                cout << "\n=== ESTADISTICAS DE: " << e->getNombre() << " ===" << endl;
+                cout << "Puntos:          " << e->getPuntos() << endl;
+                cout << "Goles a Favor:   " << e->getGolesFavor() << endl;
+                cout << "Goles en Contra: " << e->getGolesContra() << endl;
+                cout << "Diferencia:      " << e->getDiferencia() << endl;
+            } else {
+                cout << "\nError: No se encontro al equipo '" << nombreBuscado << "'." << endl;
+            }
+        }
+        // Opción 5: Reinicia todas las estadísticas de la liga.
+        else if (opcion == 5) {
             liga.reiniciarLiga(); // O(n)
             cout << "\nLa liga ha sido reiniciada correctamente." << endl;
         } 
-        // Opción 5: Finaliza el programa.
-        else if (opcion == 5) {
+        // Opción 6: Finaliza el programa.
+        else if (opcion == 6) {
             cout << "\nSaliendo del programa..." << endl;
             programaActivo = false;
         } 

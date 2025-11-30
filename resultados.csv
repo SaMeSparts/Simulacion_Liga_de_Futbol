@@ -1,154 +1,154 @@
 jornada,local,visitante,golesLocal,golesVisitante
-1,America,Tijuana,1,2
-1,Atlas,Toluca,0,0
-1,Atletico San Luis,Tigres UANL,0,4
-1,Cruz Azul,Santos Laguna,5,3
-1,Chivas,Queretaro,5,3
-1,Juarez,Pumas UNAM,1,2
-1,Leon,Puebla,5,5
-1,Mazatlan,Pachuca,5,0
-1,Monterrey,Necaxa,5,1
-2,America,Atlas,2,1
-2,Atletico San Luis,Tijuana,2,3
-2,Cruz Azul,Toluca,2,4
-2,Chivas,Tigres UANL,5,0
-2,Juarez,Santos Laguna,1,2
-2,Leon,Queretaro,3,5
-2,Mazatlan,Pumas UNAM,1,4
-2,Monterrey,Puebla,5,4
-2,Necaxa,Pachuca,2,3
-3,America,Atletico San Luis,1,1
-3,Cruz Azul,Atlas,5,5
-3,Chivas,Tijuana,1,3
-3,Juarez,Toluca,3,2
-3,Leon,Tigres UANL,4,3
-3,Mazatlan,Santos Laguna,0,2
-3,Monterrey,Queretaro,1,5
-3,Necaxa,Pumas UNAM,4,2
-3,Pachuca,Puebla,2,3
-4,America,Cruz Azul,4,4
-4,Chivas,Atletico San Luis,1,4
-4,Juarez,Atlas,3,1
-4,Leon,Tijuana,1,2
-4,Mazatlan,Toluca,1,1
-4,Monterrey,Tigres UANL,5,2
-4,Necaxa,Santos Laguna,1,0
-4,Pachuca,Queretaro,5,5
-4,Puebla,Pumas UNAM,3,4
-5,America,Chivas,0,2
-5,Juarez,Cruz Azul,5,2
-5,Leon,Atletico San Luis,2,0
-5,Mazatlan,Atlas,3,4
-5,Monterrey,Tijuana,5,1
-5,Necaxa,Toluca,1,1
-5,Pachuca,Tigres UANL,2,1
-5,Puebla,Santos Laguna,5,1
-5,Pumas UNAM,Queretaro,0,1
-6,America,Juarez,4,1
-6,Leon,Chivas,2,0
-6,Mazatlan,Cruz Azul,3,0
-6,Monterrey,Atletico San Luis,4,4
-6,Necaxa,Atlas,2,3
-6,Pachuca,Tijuana,5,2
-6,Puebla,Toluca,3,3
-6,Pumas UNAM,Tigres UANL,0,5
-6,Queretaro,Santos Laguna,2,5
-7,America,Leon,2,4
-7,Mazatlan,Juarez,0,1
-7,Monterrey,Chivas,0,4
-7,Necaxa,Cruz Azul,0,4
-7,Pachuca,Atletico San Luis,1,4
-7,Puebla,Atlas,5,1
-7,Pumas UNAM,Tijuana,2,2
-7,Queretaro,Toluca,3,5
-7,Santos Laguna,Tigres UANL,4,4
-8,America,Mazatlan,1,0
+1,America,Tijuana,0,0
+1,Atlas,Toluca,5,4
+1,Atletico San Luis,Tigres UANL,1,4
+1,Cruz Azul,Santos Laguna,4,5
+1,Chivas,Queretaro,5,2
+1,Juarez,Pumas UNAM,5,4
+1,Leon,Puebla,1,4
+1,Mazatlan,Pachuca,3,4
+1,Monterrey,Necaxa,1,5
+2,America,Atlas,4,2
+2,Atletico San Luis,Tijuana,1,1
+2,Cruz Azul,Toluca,2,2
+2,Chivas,Tigres UANL,1,2
+2,Juarez,Santos Laguna,5,5
+2,Leon,Queretaro,2,3
+2,Mazatlan,Pumas UNAM,5,0
+2,Monterrey,Puebla,1,4
+2,Necaxa,Pachuca,4,3
+3,America,Atletico San Luis,4,0
+3,Cruz Azul,Atlas,5,2
+3,Chivas,Tijuana,1,4
+3,Juarez,Toluca,1,1
+3,Leon,Tigres UANL,4,4
+3,Mazatlan,Santos Laguna,1,3
+3,Monterrey,Queretaro,3,0
+3,Necaxa,Pumas UNAM,5,1
+3,Pachuca,Puebla,3,1
+4,America,Cruz Azul,1,5
+4,Chivas,Atletico San Luis,3,1
+4,Juarez,Atlas,1,3
+4,Leon,Tijuana,2,5
+4,Mazatlan,Toluca,4,1
+4,Monterrey,Tigres UANL,5,3
+4,Necaxa,Santos Laguna,2,1
+4,Pachuca,Queretaro,0,1
+4,Puebla,Pumas UNAM,1,5
+5,America,Chivas,4,5
+5,Juarez,Cruz Azul,3,2
+5,Leon,Atletico San Luis,3,1
+5,Mazatlan,Atlas,3,2
+5,Monterrey,Tijuana,2,5
+5,Necaxa,Toluca,4,1
+5,Pachuca,Tigres UANL,4,2
+5,Puebla,Santos Laguna,3,2
+5,Pumas UNAM,Queretaro,3,0
+6,America,Juarez,0,5
+6,Leon,Chivas,5,2
+6,Mazatlan,Cruz Azul,2,4
+6,Monterrey,Atletico San Luis,3,2
+6,Necaxa,Atlas,3,1
+6,Pachuca,Tijuana,4,3
+6,Puebla,Toluca,2,5
+6,Pumas UNAM,Tigres UANL,3,2
+6,Queretaro,Santos Laguna,0,5
+7,America,Leon,1,4
+7,Mazatlan,Juarez,3,0
+7,Monterrey,Chivas,1,5
+7,Necaxa,Cruz Azul,0,5
+7,Pachuca,Atletico San Luis,3,4
+7,Puebla,Atlas,5,3
+7,Pumas UNAM,Tijuana,3,5
+7,Queretaro,Toluca,2,5
+7,Santos Laguna,Tigres UANL,0,3
+8,America,Mazatlan,0,5
 8,Monterrey,Leon,1,4
 8,Necaxa,Juarez,0,3
-8,Pachuca,Chivas,2,4
-8,Puebla,Cruz Azul,4,3
-8,Pumas UNAM,Atletico San Luis,5,3
-8,Queretaro,Atlas,2,1
-8,Santos Laguna,Tijuana,3,1
-8,Tigres UANL,Toluca,0,4
-9,America,Monterrey,0,1
-9,Necaxa,Mazatlan,0,0
-9,Pachuca,Leon,2,3
-9,Puebla,Juarez,5,2
-9,Pumas UNAM,Chivas,3,5
-9,Queretaro,Cruz Azul,5,0
-9,Santos Laguna,Atletico San Luis,2,3
-9,Tigres UANL,Atlas,4,4
-9,Toluca,Tijuana,3,0
-10,America,Necaxa,1,0
-10,Pachuca,Monterrey,0,0
-10,Puebla,Mazatlan,5,5
-10,Pumas UNAM,Leon,0,0
-10,Queretaro,Juarez,4,0
-10,Santos Laguna,Chivas,2,1
-10,Tigres UANL,Cruz Azul,1,4
+8,Pachuca,Chivas,0,0
+8,Puebla,Cruz Azul,2,5
+8,Pumas UNAM,Atletico San Luis,5,0
+8,Queretaro,Atlas,5,2
+8,Santos Laguna,Tijuana,0,5
+8,Tigres UANL,Toluca,2,4
+9,America,Monterrey,5,5
+9,Necaxa,Mazatlan,5,3
+9,Pachuca,Leon,5,4
+9,Puebla,Juarez,5,4
+9,Pumas UNAM,Chivas,0,4
+9,Queretaro,Cruz Azul,1,3
+9,Santos Laguna,Atletico San Luis,0,4
+9,Tigres UANL,Atlas,0,0
+9,Toluca,Tijuana,4,3
+10,America,Necaxa,1,3
+10,Pachuca,Monterrey,5,1
+10,Puebla,Mazatlan,4,3
+10,Pumas UNAM,Leon,4,1
+10,Queretaro,Juarez,3,0
+10,Santos Laguna,Chivas,3,2
+10,Tigres UANL,Cruz Azul,4,5
 10,Toluca,Atletico San Luis,4,1
-10,Tijuana,Atlas,5,0
-11,America,Pachuca,5,3
-11,Puebla,Necaxa,1,5
-11,Pumas UNAM,Monterrey,1,2
-11,Queretaro,Mazatlan,0,4
-11,Santos Laguna,Leon,2,3
-11,Tigres UANL,Juarez,0,4
-11,Toluca,Chivas,5,4
-11,Tijuana,Cruz Azul,0,0
-11,Atlas,Atletico San Luis,2,1
-12,America,Puebla,0,5
-12,Pumas UNAM,Pachuca,5,5
-12,Queretaro,Necaxa,3,4
-12,Santos Laguna,Monterrey,2,2
-12,Tigres UANL,Mazatlan,4,5
-12,Toluca,Leon,2,4
-12,Tijuana,Juarez,0,1
-12,Atlas,Chivas,4,4
-12,Atletico San Luis,Cruz Azul,2,0
-13,America,Pumas UNAM,2,5
-13,Queretaro,Puebla,4,3
-13,Santos Laguna,Pachuca,0,0
-13,Tigres UANL,Necaxa,4,4
-13,Toluca,Monterrey,3,0
-13,Tijuana,Mazatlan,2,4
-13,Atlas,Leon,0,4
-13,Atletico San Luis,Juarez,4,5
-13,Cruz Azul,Chivas,3,3
-14,America,Queretaro,4,3
-14,Santos Laguna,Pumas UNAM,4,3
-14,Tigres UANL,Puebla,3,3
-14,Toluca,Pachuca,4,1
-14,Tijuana,Necaxa,3,0
-14,Atlas,Monterrey,2,2
-14,Atletico San Luis,Mazatlan,3,3
-14,Cruz Azul,Leon,3,2
-14,Chivas,Juarez,3,1
-15,America,Santos Laguna,3,2
-15,Tigres UANL,Queretaro,4,5
-15,Toluca,Pumas UNAM,4,1
-15,Tijuana,Puebla,5,4
-15,Atlas,Pachuca,1,1
-15,Atletico San Luis,Necaxa,3,5
-15,Cruz Azul,Monterrey,3,2
-15,Chivas,Mazatlan,2,0
-15,Juarez,Leon,5,5
-16,America,Tigres UANL,5,1
-16,Toluca,Santos Laguna,4,5
-16,Tijuana,Queretaro,4,0
-16,Atlas,Pumas UNAM,0,1
-16,Atletico San Luis,Puebla,0,1
-16,Cruz Azul,Pachuca,1,3
-16,Chivas,Necaxa,5,4
-16,Juarez,Monterrey,4,1
+10,Tijuana,Atlas,4,5
+11,America,Pachuca,5,0
+11,Puebla,Necaxa,3,0
+11,Pumas UNAM,Monterrey,0,1
+11,Queretaro,Mazatlan,5,2
+11,Santos Laguna,Leon,4,4
+11,Tigres UANL,Juarez,2,0
+11,Toluca,Chivas,5,5
+11,Tijuana,Cruz Azul,0,3
+11,Atlas,Atletico San Luis,3,3
+12,America,Puebla,3,1
+12,Pumas UNAM,Pachuca,4,2
+12,Queretaro,Necaxa,2,5
+12,Santos Laguna,Monterrey,0,4
+12,Tigres UANL,Mazatlan,3,4
+12,Toluca,Leon,0,4
+12,Tijuana,Juarez,3,4
+12,Atlas,Chivas,5,5
+12,Atletico San Luis,Cruz Azul,5,3
+13,America,Pumas UNAM,0,1
+13,Queretaro,Puebla,3,1
+13,Santos Laguna,Pachuca,3,0
+13,Tigres UANL,Necaxa,4,3
+13,Toluca,Monterrey,5,3
+13,Tijuana,Mazatlan,5,2
+13,Atlas,Leon,1,5
+13,Atletico San Luis,Juarez,0,1
+13,Cruz Azul,Chivas,5,1
+14,America,Queretaro,1,3
+14,Santos Laguna,Pumas UNAM,0,4
+14,Tigres UANL,Puebla,3,0
+14,Toluca,Pachuca,4,3
+14,Tijuana,Necaxa,2,5
+14,Atlas,Monterrey,5,2
+14,Atletico San Luis,Mazatlan,5,0
+14,Cruz Azul,Leon,4,3
+14,Chivas,Juarez,1,2
+15,America,Santos Laguna,0,4
+15,Tigres UANL,Queretaro,4,4
+15,Toluca,Pumas UNAM,3,0
+15,Tijuana,Puebla,4,3
+15,Atlas,Pachuca,2,3
+15,Atletico San Luis,Necaxa,0,5
+15,Cruz Azul,Monterrey,5,5
+15,Chivas,Mazatlan,4,1
+15,Juarez,Leon,3,5
+16,America,Tigres UANL,2,1
+16,Toluca,Santos Laguna,0,1
+16,Tijuana,Queretaro,1,3
+16,Atlas,Pumas UNAM,4,3
+16,Atletico San Luis,Puebla,2,3
+16,Cruz Azul,Pachuca,5,4
+16,Chivas,Necaxa,1,1
+16,Juarez,Monterrey,2,1
 16,Leon,Mazatlan,4,5
-17,America,Toluca,0,0
-17,Tijuana,Tigres UANL,2,3
-17,Atlas,Santos Laguna,1,1
-17,Atletico San Luis,Queretaro,5,5
-17,Cruz Azul,Pumas UNAM,0,3
-17,Chivas,Puebla,3,4
-17,Juarez,Pachuca,5,0
-17,Leon,Necaxa,2,4
-17,Mazatlan,Monterrey,3,2
+17,America,Toluca,0,1
+17,Tijuana,Tigres UANL,1,0
+17,Atlas,Santos Laguna,1,3
+17,Atletico San Luis,Queretaro,1,4
+17,Cruz Azul,Pumas UNAM,3,5
+17,Chivas,Puebla,3,1
+17,Juarez,Pachuca,2,2
+17,Leon,Necaxa,1,1
+17,Mazatlan,Monterrey,1,0
