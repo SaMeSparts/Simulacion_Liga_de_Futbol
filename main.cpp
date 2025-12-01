@@ -46,7 +46,7 @@ int main() {
         cout << "1. Simular liga completa" << endl;
         cout << "2. Ver tabla general" << endl;
         cout << "3. Ver resultados de una jornada" << endl;
-        cout << "4. Consultar estadisticas de un equipo" << endl; // NUEVA OPCION
+        cout << "4. Consultar estadisticas de un equipo" << endl; 
         cout << "5. Reiniciar liga" << endl;
         cout << "6. Salir" << endl;
         cout << "Seleccione una opcion: ";
@@ -81,7 +81,7 @@ int main() {
             }
             liga.mostrarJornada(jornada); // O(n)
         } 
-        // Opción 4: [NUEVA] Consulta datos de un equipo específico
+        // Opción 4: Consulta datos de un equipo específico
         else if (opcion == 4) {
             string nombreBuscado;
             cout << "\nIngrese el nombre del equipo (Tal cual aparece en la lista): ";
