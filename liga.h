@@ -142,7 +142,7 @@ public:
         }
     }
 
-    // [NUEVO] Mecanismo de consulta de información en la Lista
+    // Mecanismo de consulta de información en la Lista
     // Busca un equipo por nombre recorriendo la lista nodo por nodo.
     // Complejidad: O(n) (Búsqueda Lineal)
     Equipo* consultarEquipo(const string& nombreBuscado) {
