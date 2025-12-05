@@ -95,7 +95,7 @@ private:
 ```
 ### 3. Product of Array Except Self (Medium)
 **Problema:** [LeetCode 238](https://leetcode.com/problems/product-of-array-except-self/)  
-**Video Explicativo:** [Ver en YouTube](https://youtu.be/hnfWmItGVQY)  
+**Video Explicativo:** [Ver en YouTube](https://youtu.be/se3ruMbBCMs)  
 **Solución:** [Ver Solución](https://leetcode.com/problems/product-of-array-except-self/submissions/1820940298)
 
 ## Análisis y Estrategia: Product of Array Except Self
