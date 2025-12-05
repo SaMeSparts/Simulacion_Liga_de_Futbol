@@ -98,12 +98,37 @@ private:
 **Video Explicativo:** [Ver en YouTube](https://youtu.be/hnfWmItGVQY)  
 **Solución:** [Ver Solución](https://leetcode.com/problems/product-of-array-except-self/submissions/1820940298)
 
-**Análisis y Estrategia:**
-El problema requiere solución en O(n) y sin usar división.
-* La lógica se basa en Prefijos y Sufijos. `ans[i]` es igual al producto de todos los números a la izquierda de `i` por todos los a la derecha.
-* Paso 1: Llenamos el arreglo `answer` con los productos acumulados de izquierda a derecha (prefijos).
-* Paso 2: Recorremos de derecha a izquierda manteniendo una variable `rightProduct` y multiplicándola con el valor que ya existe en `answer`.
-* Esto optimiza el espacio a O(1) extra
+## Análisis y Estrategia: Product of Array Except Self
+
+### Descripción del Problema
+El objetivo es transformar un arreglo de entrada `nums` en un arreglo de salida `answer` donde cada elemento `answer[i]` es igual al producto de todos los elementos de `nums` excepto `nums[i]`.
+
+**Restricciones Críticas:**
+1.  **Sin División:** No se permite calcular el producto total y dividir entre el elemento actual (esto fallaría si hay ceros).
+2.  **Tiempo Lineal:** La solución debe ejecutarse en $O(N)$.
+
+### Estrategia de Solución: Prefijos y Sufijos
+Para resolver el problema sin división, descomponemos el cálculo en dos partes. Para cualquier posición `i`, el resultado deseado es:
+$$Resultado[i] = (Producto_{izquierda}) \times (Producto_{derecha})$$
+
+Implementamos un algoritmo de **Doble Barrido (Two-Pass Approach)**:
+
+1.  **Primer Barrido (Forward Pass - Prefijos):**
+    * Iteramos de izquierda a derecha ($0 \rightarrow N-1$).
+    * Calculamos el producto acumulado de todos los números anteriores a la posición actual.
+    * Almacenamos estos valores en el arreglo de respuesta.
+
+2.  **Segundo Barrido (Backward Pass - Sufijos):**
+    * Iteramos de derecha a izquierda ($N-1 \rightarrow 0$).
+    * Mantenemos una variable acumuladora (`rightProduct`) que lleva el producto de todos los números posteriores a la posición actual.
+    * Multiplicamos el valor que ya existía en el arreglo (prefijo) por el valor de la variable acumuladora (sufijo) para obtener el resultado final.
+
+### Análisis de Complejidad
+
+* **Complejidad Temporal:** $O(N)$.
+    * Realizamos dos iteraciones lineales independientes sobre el arreglo. Como no hay bucles anidados, el tiempo de ejecución escala linealmente con el tamaño de la entrada.
+* **Complejidad Espacial:** $O(1)$ (Auxiliar).
+    * Aparte del arreglo de salida (que no cuenta como espacio extra según el enunciado), solo utilizamos variables escalares (`leftProduct`, `rightProduct`, `i`, `n`) para el control de flujo. No utilizamos estructuras de datos adicionales como matrices o listas auxiliares.
 
 **Código Principal:**
 
