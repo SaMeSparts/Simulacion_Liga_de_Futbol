@@ -10,22 +10,29 @@
 **Video Explicativo:** [Ver en YouTube](https://youtu.be/T-RzodNyZk8)  
 **Solución:** [Ver Solución](https://leetcode.com/problems/minimum-replacements-to-sort-the-array/submissions/1820940051)
 
-## Análisis y Estrategia
+## Análisis y Fundamentación Teórica (Relación con Ordenamiento)
 
-El objetivo es transformar el arreglo en una secuencia **no decreciente** realizando el número mínimo de operaciones (divisiones). La estrategia óptima es un enfoque **Greedy (avaro) inverso**.
+### 1. Definición del Problema como Ordenamiento
+Aunque este problema no utiliza comparaciones e intercambios (swaps) tradicionales como *Bubble Sort* o *Quicksort*, su fundamento teórico es la **satisfacción de la Propiedad de Orden No Decreciente**.
+Matemáticamente, buscamos transformar el arreglo tal que se cumpla la condición:
+$$nums[i] \leq nums[i+1]$$
+para todo $0 \leq i < n-1$.
 
-**Lógica del Algoritmo:**
+### 2. Estrategia de Solución: Propagación de Restricciones
+La relación con los algoritmos de ordenamiento reside en la técnica de **recorrido inverso** (de derecha a izquierda).
 
-1.  **Iteración Inversa:** Recorremos el arreglo desde el último elemento hacia el primero (`n-2` hasta `0`). El último elemento define inicialmente el límite superior (`next`) para su vecino izquierdo, ya que no tiene restricciones a su derecha.
+* **Analogía con Insertion Sort/Bubble Sort:** Al igual que en algoritmos clásicos donde la parte "ordenada" se construye progresivamente (generalmente al final del arreglo), aquí establecemos un **sufijo ordenado válido**.
+* **El Invariante:** Al iterar desde `n-2` hasta `0`, garantizamos que el elemento actual `nums[i]` sea compatible con el elemento ya procesado a su derecha (`nums[i+1]` o `next`). El valor `next` actúa como una **cota superior** (upper bound) estricta.
 
-2.  **Criterio de División:** Si un elemento `nums[i]` es mayor que el límite permitido (`next`), debemos dividirlo.
-    * Para minimizar el costo total, dividimos `nums[i]` en la **menor cantidad de partes** necesarias para que ninguna parte exceda a `next`.
-    * Fórmula de partes: `parts = (nums[i] + next - 1) / next` (división techo).
+### 3. Lógica Greedy vs. Swapping
+En un ordenamiento tradicional, si encontramos una inversión ($nums[i] > nums[i+1]$), intercambiamos posiciones. En este problema, la "inversión" se resuelve **dividiendo** el elemento $nums[i]$.
 
-3.  **Actualización del Límite (Greedy):**
-    * Sumamos `parts - 1` al contador de operaciones.
-    * El nuevo límite `next` para la siguiente iteración será el valor del bloque más pequeño resultante de la división.
-    * **Clave:** Usamos `next = nums[i] / parts`. Esto asegura que el número resultante sea **lo más grande posible** (maximizar el valor a la izquierda), reduciendo la probabilidad de tener que dividir los números anteriores.
+* Si $nums[i] > next$: Existe una violación del orden.
+* **Acción:** Dividimos $nums[i]$ en $k$ partes.
+* **Optimización (Greedy):** Para afectar lo menos posible a los elementos restantes a la izquierda (y facilitar su ordenamiento), el nuevo valor límite (`next`) debe ser **el máximo posible** resultante de esa división.
+    * Fórmula: `next = nums[i] / parts`.
+
+Esta estrategia asegura que el arreglo resultante cumpla la propiedad de estar ordenado ascendentemente con el mínimo costo computacional.
 
 **Código Principal:**
 ```cpp
