@@ -7,7 +7,7 @@
 
 ### 1. Minimum Replacements to Sort the Array (Hard)
 **Problema:** [LeetCode 2366](https://leetcode.com/problems/minimum-replacements-to-sort-the-array/)  
-**Video Explicativo:** [Ver en YouTube](https://youtu.be/T-RzodNyZk8)  
+**Video Explicativo:** [Ver en YouTube](https://youtu.be/R9hlPIqlQU8)  
 **Solución:** [Ver Solución](https://leetcode.com/problems/minimum-replacements-to-sort-the-array/submissions/1820940051)
 
 ## Análisis y Fundamentación Teórica (Relación con Ordenamiento)
