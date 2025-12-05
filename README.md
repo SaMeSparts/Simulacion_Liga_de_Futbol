@@ -10,12 +10,22 @@
 **Video Explicativo:** [Ver en YouTube](https://youtu.be/T-RzodNyZk8)  
 **Solución:** [Ver Solución](https://leetcode.com/problems/minimum-replacements-to-sort-the-array/submissions/1820940051)
 
-**Análisis y Estrategia:**
-El objetivo es ordenar el arreglo dividiendo elementos en partes más pequeñas. La estrategia óptima es un enfoque **Greedy (avaro) inverso**:
-* Iteramos desde el último elemento hacia el primero. El último elemento dicta el límite máximo (`next`) para su vecino izquierdo.
-* Si un número `nums[i]` es mayor que `next`, debemos dividirlo en la menor cantidad de partes posibles para que ninguna parte supere a `next`.
-* Usamos la fórmula `(nums[i] + next - 1) / next` para calcular las partes necesarias (división techo).
-* El nuevo límite `next` será el resultado de la división, para mantener los números lo más grandes posible hacia la izquierda.
+## Análisis y Estrategia
+
+El objetivo es transformar el arreglo en una secuencia **no decreciente** realizando el número mínimo de operaciones (divisiones). La estrategia óptima es un enfoque **Greedy (avaro) inverso**.
+
+**Lógica del Algoritmo:**
+
+1.  **Iteración Inversa:** Recorremos el arreglo desde el último elemento hacia el primero (`n-2` hasta `0`). El último elemento define inicialmente el límite superior (`next`) para su vecino izquierdo, ya que no tiene restricciones a su derecha.
+
+2.  **Criterio de División:** Si un elemento `nums[i]` es mayor que el límite permitido (`next`), debemos dividirlo.
+    * Para minimizar el costo total, dividimos `nums[i]` en la **menor cantidad de partes** necesarias para que ninguna parte exceda a `next`.
+    * Fórmula de partes: `parts = (nums[i] + next - 1) / next` (división techo).
+
+3.  **Actualización del Límite (Greedy):**
+    * Sumamos `parts - 1` al contador de operaciones.
+    * El nuevo límite `next` para la siguiente iteración será el valor del bloque más pequeño resultante de la división.
+    * **Clave:** Usamos `next = nums[i] / parts`. Esto asegura que el número resultante sea **lo más grande posible** (maximizar el valor a la izquierda), reduciendo la probabilidad de tener que dividir los números anteriores.
 
 **Código Principal:**
 ```cpp
